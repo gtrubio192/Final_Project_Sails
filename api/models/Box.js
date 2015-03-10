@@ -8,6 +8,9 @@
 module.exports = {
 
   attributes: {
+    page  : { type: 'string', unique: true },
+    key  : { type: 'string', unique: true },
+    content: { type: 'string', unique:false }
 
   }
 };

@@ -1,0 +1,24 @@
+<div class="container text-center">
+	<p>{{ test }}</p>
+	<button  class="btn" ui-sref="about">About</button>
+    <button  class="btn" ui-sref="blog">Blog Board</button>
+    <br>
+    <div class="edit">
+        <button class="btn pull-right" ng-click="edit()">
+            <i class="fa fa-pencil"></i>
+        </button>
+        <div>
+            <textarea rows="4" cols="50" ng-show="textShow" type="text" ng-model="divContent[0].content">
+<!--                {{item.content}}-->
+    <!--                    {{divContent}}-->
+            </textarea>
+        </div>
+        <div ng-show="!textShow">
+            <p>{{divContent[0].content}}</p>
+<!--       <div ng-show="!textShow" ng-repeat="items in divContent track by $index">-->
+<!--            {{items.content}}-->
+<!--            {{divContent}}-->
+        </div>
+        <button class="btn btn-default" ng-show="saveButton" ng-click="save(header)">Save</button>
+    </div>
+</div>
