@@ -4,34 +4,58 @@ angular.module('app.controllers', [])
     $scope.textShow = false;
     $scope.saveButton = false;
     $scope.divContent = [ { id:'',content: "" } ];
+    $scope.divContent1 = [ { id:'',content: "" } ];
+    $scope.divContent2 = [ { id:'',content: "" } ];
+
 //    console.log("Original: " + $scope.divContent[0].content);
     
     $scope.render = function(){
-//        $scope.divContent = [ { id:'',content: "" } ];
         console.log("Top of render(): " + $scope.divContent[0].content)
         // if we have changed and added content...
         if($scope.divContent[0].content == "" || $scope.divContent[0].content)
         {
-            $http.get('/Box?=/home')
+            $http.get('/Box?=/home&key=header')
             .success(function(response) {
-                console.log("In Success Render().");
-                console.log("Response[0].content ");
-                console.log(response[0].content);
-                console.log("Response whole:");
+//                console.log("In Header Success Render().");
+//                console.log("Response[0].content ");
+//                console.log(response[0].content);
+                console.log("Header Response whole:");
                 console.log(response);
-                console.log("divContent: " + $scope.divContent[0].content);
-                $scope.responseLen = response.length;
-                console.log($scope.responseLen);
+//                console.log("divContent: " + $scope.divContent[0].content);
+                $scope.headResponseLen = response.length;
+//                console.log($scope.responseLen);
+//                console.log("response section: " + response[$scope.responseLen-1].key);
+//                
+//                $scope.headerPos = _.lastIndexOf(response, response);
+//                console.log($scope.headerPos);
                 // if we have changed and added content...
-//                if(response[0].content == $scope.divContent[0].content){
-//                    console.log("Inside Success if, do nothing. divContent is: ");
-//                    console.log($scope.divContent[0].content);
-//                }
-//                // else content is empty string... 
-//                else{
-                    $scope.divContent[0].content = response[$scope.responseLen-1].content; 
-//                    console.log("Newest divContent: " + $scope.divContent[0].content);
-//                }
+                if(response[$scope.headResponseLen-1].key == 'header')
+                {
+                    console.log("we have a header");
+                    $scope.divContent[0].content = response[$scope.headResponseLen-1].content; 
+                }
+                
+            })
+            .error(function(err){
+                console.log(err);
+            });
+            
+            $http.get('/Box?=/home&key=div1')
+            .success(function(response) {
+                console.log("In Div 1 Success Render().");
+//                console.log("Div 1 Response[0].content ");
+//                console.log(response[0].content);
+                console.log("Div1 Response whole:");
+                console.log(response);
+                $scope.div1ResponseLen = response.length;
+                
+                console.log(response[$scope.div1ResponseLen-1].key);
+                
+                if(response[$scope.div1ResponseLen-1].key == 'div1')
+                {
+                    console.log("We have a div1");
+                    $scope.divContent1[0].content = response[$scope.div1ResponseLen-1].content; 
+                }
             })
             .error(function(err){
                 console.log(err);
@@ -54,14 +78,36 @@ angular.module('app.controllers', [])
     $scope.save = function(section,page){
         $scope.textShow = false;
         $scope.saveButton = false;
-        console.log("Changes to be posted in save()");
-        console.log($scope.divContent[0].content)
-        $http.post('/Box', 
+//        $http.delete('/Box?key=header')
+//            .success(function(response){
+//                console.log("Delete header key success: " + response);
+//            })
+//            .error(function(err){
+//                console.log("Delete Error : " + err);
+//        });
+        if(section == 'header')
+        {
+            console.log("Changes to header posted in save()");
+            console.log($scope.divContent[0].content);
+            $http.post('/Box', 
                    { page: page,
                      key: section,
                      content: $scope.divContent[0].content
-                   }); 
-        $timeout($scope.render, 2000);
+                   });
+        }
+        else if(section == 'div1')
+        {
+            console.log("Changes to div1 posted in save()");
+            console.log($scope.divContent[0].content);
+            $http.post('/Box', 
+                   { page: page,
+                     key: section,
+                     content: $scope.divContent1[0].content
+                   });
+        }
+ 
+//        PUT ME BACK!!!
+//        $timeout($scope.render, 2000);
     };
     
     $scope.goAbout = function() {
