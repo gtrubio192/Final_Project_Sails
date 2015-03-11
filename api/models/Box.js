@@ -8,8 +8,8 @@
 module.exports = {
 
   attributes: {
-    page  : { type: 'string', unique: true },
-    key  : { type: 'string', unique: true },
+    page  : { type: 'string', unique: false },
+    key  : { type: 'string', unique: false },
     content: { type: 'string', unique:false }
 
   }

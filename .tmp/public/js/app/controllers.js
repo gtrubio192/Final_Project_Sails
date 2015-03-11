@@ -17,9 +17,11 @@ angular.module('app.controllers', [])
                 console.log("In Success Render().");
                 console.log("Response[0].content ");
                 console.log(response[0].content);
-//                console.log(response[0].content);
+                console.log("Response whole:");
+                console.log(response);
                 console.log("divContent: " + $scope.divContent[0].content);
-                
+                $scope.responseLen = response.length;
+                console.log($scope.responseLen);
                 // if we have changed and added content...
 //                if(response[0].content == $scope.divContent[0].content){
 //                    console.log("Inside Success if, do nothing. divContent is: ");
@@ -27,8 +29,8 @@ angular.module('app.controllers', [])
 //                }
 //                // else content is empty string... 
 //                else{
-                    $scope.divContent[0].content = response[0].content; 
-                    console.log("Newest divContent: " + $scope.divContent[0].content);
+                    $scope.divContent[0].content = response[$scope.responseLen-1].content; 
+//                    console.log("Newest divContent: " + $scope.divContent[0].content);
 //                }
             })
             .error(function(err){
@@ -44,20 +46,21 @@ angular.module('app.controllers', [])
         // show textarea, setting to true also hides div
         $scope.textShow = true;
         $scope.saveButton = true;
-        console.log("In edit(): " + $scope.divContent[0].content)
+        console.log("In edit() divContent: " + $scope.divContent[0].content)
         // take input from text area
         // display input to div once 'saved' button clicked
     };
     
-    $scope.save = function(key){
+    $scope.save = function(section,page){
         $scope.textShow = false;
         $scope.saveButton = false;
         console.log("Changes to be posted in save()");
         console.log($scope.divContent[0].content)
         $http.post('/Box', 
-                   { content: $scope.divContent[0].content,
-                     page: '',
-                     key: ''}); 
+                   { page: page,
+                     key: section,
+                     content: $scope.divContent[0].content
+                   }); 
         $timeout($scope.render, 2000);
     };
     
