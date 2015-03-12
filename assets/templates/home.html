@@ -1,39 +1,40 @@
 <div class="container text-center">
+<!--
     <div>
         <button class="btn pull-right" ng-click="edit()">
             <i class="fa fa-pencil"></i>
         </button>
     </div>
+-->
 	<p>{{ test }}</p>
 	<button  class="btn" ui-sref="about">About</button>
     <button  class="btn" ui-sref="blog">Blog Board</button>
     <br>
 
-    <div id='home' class="edit">
-        <div>
-            <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="divContent[0].content">
+    <dynamic ng-repeat="section in sections" 
+             content="section.content" 
+             key="'header'" 
+             page="'home'">
 
-            </textarea>
-        </div>
-        <div ng-show="!textShow">
-            <p>{{divContent[0].content}}</p>
-        </div>
-        <button class="btn btn-default" ng-show="saveButton" ng-click="save('header','home')">Save</button>
-    </div>
-    <div id='div1' class="edit">
+    </dynamic>
+    <dynamic content="dynamicContent2" key="'div1'" page="'home'">
+        
+    </dynamic>
+<!--    <div id='div1' class="edit">-->
 <!--
         <button class="btn pull-right" ng-click="edit()">
             <i class="fa fa-pencil"></i>
         </button>
 -->
+<!--
         <div>
             <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="divContent1[0].content">
-
             </textarea>
         </div>
         <div ng-show="!textShow">
             <p>{{divContent1[0].content}}</p>
         </div>
-        <button class="btn btn-default" ng-show="saveButton" ng-click="save('div1','home')">Save</button>
+        <button class="btn btn-default" ng-show="saveButton" ng-click="this.save('div1','home')">Save</button>
     </div>
+-->
 </div>

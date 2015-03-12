@@ -1,1 +1,33 @@
+<div class="container text-center">
 	<p>{{ test }}</p>
+	<button  class="btn" ui-sref="home">Home</button>
+    <button  class="btn" ui-sref="blog">Blog Board</button>
+    <br>
+    <p class="text-left"><h3>Our Mission:</h3></p>
+    <div id='home' class="edit">
+        <button class="btn pull-right" ng-click="edit()">
+            <i class="fa fa-pencil"></i>
+        </button>
+        <div>
+            <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="divContent[0].content">
+            </textarea>
+        </div>
+        <div ng-show="!textShow">
+            <p>{{divContent[0].content}}</p>
+        </div>
+        <button class="btn btn-default" ng-show="saveButton" ng-click="save('header','about')">Save</button>
+    </div>
+    <div id='div1' class="edit">
+        <button class="btn pull-right" ng-click="this.edit()">
+            <i class="fa fa-pencil"></i>
+        </button>
+        <div>
+            <textarea rows="4" cols="70" ng-show="this.textShow" type="text" ng-model="divContent1[0].content">
+            </textarea>
+        </div>
+        <div ng-show="!this.textShow">
+            <p>{{divContent1[0].content}}</p>
+        </div>
+        <button class="btn btn-default" ng-show="saveButton" ng-click="save('div1','about')">Save</button>
+    </div>
+</div>

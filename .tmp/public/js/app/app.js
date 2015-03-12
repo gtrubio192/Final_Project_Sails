@@ -1,6 +1,6 @@
 /* jshint devel:true */
 // ui.router is another dependency
-angular.module('app', ['app.controllers', 'ui.router'])
+angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.services'])
 // provider is 3 types of services
 // can only use providers inside of .config
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
