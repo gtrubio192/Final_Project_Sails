@@ -11,96 +11,99 @@ angular.module('app.controllers', [])
 })
 .controller('AboutCtrl', function($scope, $state, $http) {
 	$scope.test = 'About';
-    $scope.textShow = false;
-    $scope.saveButton = false;
-    $scope.divContent = [ { id:'',content: "" } ];
-    $scope.divContent1 = [ { id:'',content: "" } ];
-    $scope.divContent2 = [ { id:'',content: "" } ];
+  $scope.textShow = false;
+  $scope.saveButton = false;
+  $scope.divContent = [ { id:'',content: "" } ];
+  $scope.divContent1 = [ { id:'',content: "" } ];
 
 //    console.log("Original: " + $scope.divContent[0].content);
     
-    $scope.render = function(){
-      
-      
-      
-        console.log("Top of render(): " + $scope.divContent[0].content)
-        // if we have changed and added content...
-        if($scope.divContent[0].content == "" || $scope.divContent[0].content)
-        {
-            $http.get('/Box?=/about&section=header')
-            .success(function(response) {
-                $scope.headResponseLen = response.length;
-                // if we have changed and added content...
-                if(response[$scope.headResponseLen-1].key == 'header')
-                {
-                    console.log("we have a header");
-                    $scope.divContent[0].content = response[$scope.headResponseLen-1].content; 
-                }
-                
-            })
-            .error(function(err){
-                console.log(err);
-            });
-            
-            $http.get('/Box?=/about&key=div1')
-            .success(function(response) {
-                console.log("In Div 1 Success Render().");
-                console.log("Div1 Response whole:");
-                console.log(response);
-                $scope.div1ResponseLen = response.length;
-                
-                console.log(response[$scope.div1ResponseLen-1].key);
-                
-                if(response[$scope.div1ResponseLen-1].key == 'div1')
-                {
-                    console.log("We have a div1");
-                    $scope.divContent1[0].content = response[$scope.div1ResponseLen-1].content; 
-                }
-            })
-            .error(function(err){
-                console.log(err);
-            });
-        }
+  $scope.render = function(){
+    console.log("Top of render(): " + $scope.divContent[0].content)
+    // if we have changed and added content...
+    if($scope.divContent[0].content == "" || $scope.divContent[0].content)
+    {
+      console.log("Possible error here");
+//      $http.get('/Box?=/about&section=header')
+//      .success(function(response) {
+//          $scope.headResponseLen = response.length;
+//          // if we have changed and added content...
+//          if(response[$scope.headResponseLen-1].section == 'header')
+//          {
+//              console.log("we have a header");
+//              $scope.divContent[0].content = response[$scope.headResponseLen-1].content; 
+//          }
+//
+//      })
+//      .error(function(err){
+//          console.log(err);
+//      });
+//
+//      $http.get('/Box?=/about&section=div1')
+//      .success(function(response) {
+//          console.log("In Div 1 Success Render().");
+//          console.log("Div1 Response whole:");
+//          console.log(response);
+//          $scope.div1ResponseLen = response.length;
+//
+//          console.log(response[$scope.div1ResponseLen-1].section);
+//
+//          if(response[$scope.div1ResponseLen-1].section == 'div1')
+//          {
+//              console.log("We have a div1");
+//              $scope.divContent1[0].content = response[$scope.div1ResponseLen-1].content; 
+//          }
+//      })
+//      .error(function(err){
+//          console.log(err);
+//      });
+    }
 
-    };
-    
-    $scope.render();
+  };
 
-    $scope.edit = function(){
-        // show textarea, setting to true also hides div
-        $scope.textShow = true;
-        $scope.saveButton = true;
-        console.log("In edit() divContent: " + $scope.divContent[0].content)
-    };
-    
-    $scope.save = function(section,page){
-        $scope.textShow = false;
-        $scope.saveButton = false;
-        if(section == 'header')
-        {
-            console.log("Changes to header posted in save()");
-            console.log($scope.divContent[0].content);
-            $http.post('/Box', 
-                   { page: page,
-                     key: section,
-                     content: $scope.divContent[0].content
-            })
-            .success(function(response){
-              console.log("Static post success: " )
-              console.log(response);
-            });
-        }
-        else if(section == 'div1')
-        {
-            console.log("Changes to div1 posted in save()");
-            console.log($scope.divContent[0].content);
-            $http.post('/Box', 
-                   { page: page,
-                     key: section,
-                     content: $scope.divContent1[0].content
-                   });
-        }
-    };
+  $scope.render();
+
+  $scope.edit = function(){
+    // show textarea, setting to true also hides div
+    $scope.textShow = true;
+    $scope.saveButton = true;
+    console.log("In edit() divContent: " + $scope.divContent[0].content)
+  };
+
+  $scope.save = function(section,page){
+    $scope.textShow = false;
+    $scope.saveButton = false;
+    if(section == 'header')
+    {
+        console.log("Changes to header posted in save()");
+        console.log($scope.divContent[0].content);
+//        $http.post('/Box', 
+//               { page: page,
+//                 section: section,
+//                 content: $scope.divContent[0].content
+//        })
+//        .success(function(response){
+//          console.log("Static post success: " )
+//          console.log(response);
+//        })
+//        .error(function(err){
+//          console.log(err);
+//        });
+    }
+    else if(section == 'div1')
+    {
+      console.log("Changes to div1 posted in save()");
+      console.log($scope.divContent[0].content);
+//      $http.post('/Box', { 
+//        page: page,
+//        section: section,
+//        content: $scope.divContent1[0].content
+//      })
+//      .error(function(err){
+//        console.log(err);
+//      });
+    }
+  };
 })
 .controller('BlogCtrl', function($scope) {
 	$scope.test = 'Blogs';
