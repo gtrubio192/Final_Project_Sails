@@ -26,6 +26,19 @@ angular.module('app.directives', [])
     $scope.save = function(){
       $scope.textShow = false;
       $scope.saveButton = false;
+      console.log("Saving...");
+      $http.put('/Box/' + $scope.id, {
+        page: $scope.page,
+        section: $scope.section.section,
+        content: $scope.content
+      })
+      .success(function(response){
+        console.log("Dynamic put success: " )
+        console.log(response);
+      })
+      .error(function(err){
+        console.log(err);
+      });
 
     };
     $scope.deletePost = function(){

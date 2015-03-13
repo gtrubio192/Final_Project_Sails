@@ -8,7 +8,8 @@ angular.module('app.services', [])
         page: page
       };
       console.log("Loading...");
-      return $http.get("/Box?where=" + JSON.stringify(query))
+//      return $http.get("/Box?where=" + JSON.stringify(query))
+      return $http.get("/Box")
       .success(function(response) {
         console.log("Load gets success");
         console.log(response);
