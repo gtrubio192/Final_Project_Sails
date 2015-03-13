@@ -20,14 +20,16 @@ angular.module('app.directives', [])
       // show textarea, setting to true also hides div
       $scope.textShow = true;
       $scope.saveButton = true;
-      console.log("Dynamic page: " + $scope.page);
+      console.log("Edit...");
     };
+    
     $scope.save = function(){
       $scope.textShow = false;
       $scope.saveButton = false;
 
     };
     $scope.deletePost = function(){
+      $scope.deleted = true;
       console.log("Deleting...");
       console.log($scope.id);
       var query = {
@@ -36,7 +38,7 @@ angular.module('app.directives', [])
       
       console.log(query);
     
-    $http.delete("/Box/id/5")
+    $http.delete("/Box/" + $scope.id)
       .success(function(response) {
         console.log("Delete success");
         console.log(response);

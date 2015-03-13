@@ -1,6 +1,9 @@
-<div id='div1' class="edit">
+<div id='div1' class="edit" ng-hide="deleted">
     <button class="btn pull-right" ng-click="edit()">
         <i class="fa fa-pencil"></i>
+    </button>
+    <button class="btn pull-right" ng-click="deletePost()">
+        <i class="fa fa-times"></i>
     </button>
     <div>
         <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">
@@ -11,5 +14,5 @@
         <p>{{content}}</p>
 
     </div>
-    <button class="btn btn-default" ng-show="saveButton" ng-click="deletePost()">Save</button>
+    <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>
 </div>
