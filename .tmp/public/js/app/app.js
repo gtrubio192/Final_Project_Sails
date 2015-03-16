@@ -24,6 +24,11 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		url: "/about",
 		templateUrl: "templates/about.html",
 		controller: "AboutCtrl"
+	})
+  .state('post', {
+		url: "/about",
+		templateUrl: "templates/about.html",
+		controller: "PostCtrl"
 	});
 // specifies what the defualt page is
 	$urlRouterProvider.otherwise("/home");

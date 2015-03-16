@@ -1,7 +1,7 @@
 // Glue
 
 angular.module('app.controllers', [])
-.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
+.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService, PostService) {
 	$scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
@@ -16,11 +16,29 @@ angular.module('app.controllers', [])
     $scope.editButtons = true;
   };
   
-  $scope.postContent = function(){
-    console.log("Posting...");
+// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+  console.log($scope.caption);
+//  PostService.post($scope,'home').then(function(response){
+//    console.log("Post response " + response);
+//  });
+  
+  $scope.post = PostService.post;
+    
+})
+.controller('AboutCtrl', function($scope, $state, $http, SectionService) {
+  $scope.test = 'About';
+
+  $scope.formShow = false;
+  SectionService.load('about').then(function(response){
+    $scope.sections = response.data;
+  });
+  
+  $scope.postContent = function(page){
+    console.log("Posting..." + page);
     console.log($scope.caption);
     $scope.textShow = false;
     $scope.saveButton = false;
+    $scope.page = page
     $http.post('/Box/',{
       page: $scope.page,
       section: $scope.section,
@@ -38,25 +56,20 @@ angular.module('app.controllers', [])
     $scope.saveButton = false;
   };
   
-// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
-  
-    
-})
-.controller('AboutCtrl', function($scope, $state, $http) {
-	$scope.test = 'About';
-  $scope.textShow = false;
-  $scope.saveButton = false;
-  $scope.divContent = [ { id:'',content: "" } ];
-  $scope.divContent1 = [ { id:'',content: "" } ];
-
+//  
+//  $scope.textShow = false;
+//  $scope.saveButton = false;
+//  $scope.divContent = [ { id:'',content: "" } ];
+//  $scope.divContent1 = [ { id:'',content: "" } ];
+//
 //    console.log("Original: " + $scope.divContent[0].content);
-    
-  $scope.render = function(){
-    console.log("Top of render(): " + $scope.divContent[0].content)
-    // if we have changed and added content...
-    if($scope.divContent[0].content == "" || $scope.divContent[0].content)
-    {
-      console.log("Possible error here");
+//    
+//  $scope.render = function(){
+//    console.log("Top of render(): " + $scope.divContent[0].content)
+//    // if we have changed and added content...
+//    if($scope.divContent[0].content == "" || $scope.divContent[0].content)
+//    {
+//      console.log("Possible error here");
 //      $http.get('/Box?=/about&section=header')
 //      .success(function(response) {
 //          $scope.headResponseLen = response.length;
@@ -90,26 +103,26 @@ angular.module('app.controllers', [])
 //      .error(function(err){
 //          console.log(err);
 //      });
-    }
-
-  };
-
-  $scope.render();
-
-  $scope.edit = function(){
-    // show textarea, setting to true also hides div
-    $scope.textShow = true;
-    $scope.saveButton = true;
-    console.log("In edit() divContent: " + $scope.divContent[0].content)
-  };
-
-  $scope.save = function(section,page){
-    $scope.textShow = false;
-    $scope.saveButton = false;
-    if(section == 'header')
-    {
-        console.log("Changes to header posted in save()");
-        console.log($scope.divContent[0].content);
+//    }
+//
+//  };
+//
+//  $scope.render();
+//
+//  $scope.edit = function(){
+//    // show textarea, setting to true also hides div
+//    $scope.textShow = true;
+//    $scope.saveButton = true;
+//    console.log("In edit() divContent: " + $scope.divContent[0].content)
+//  };
+//
+//  $scope.save = function(section,page){
+//    $scope.textShow = false;
+//    $scope.saveButton = false;
+//    if(section == 'header')
+//    {
+//        console.log("Changes to header posted in save()");
+//        console.log($scope.divContent[0].content);
 //        $http.post('/Box', 
 //               { page: page,
 //                 section: section,
@@ -122,11 +135,11 @@ angular.module('app.controllers', [])
 //        .error(function(err){
 //          console.log(err);
 //        });
-    }
-    else if(section == 'div1')
-    {
-      console.log("Changes to div1 posted in save()");
-      console.log($scope.divContent[0].content);
+//    }
+//    else if(section == 'div1')
+//    {
+//      console.log("Changes to div1 posted in save()");
+//      console.log($scope.divContent[0].content);
 //      $http.post('/Box', { 
 //        page: page,
 //        section: section,
@@ -135,44 +148,35 @@ angular.module('app.controllers', [])
 //      .error(function(err){
 //        console.log(err);
 //      });
-    }
-  };
+//    }
+//  };
 })
 .controller('BlogCtrl', function($scope) {
 	$scope.test = 'Blogs';
+})
+.controller('PostCtrl', function($scope, $http){
+  console.log("Post Control");
+  
+  $scope.postContent = function(page){
+    console.log("Posting..." + page);
+    console.log($scope.caption);
+    $scope.textShow = false;
+    $scope.saveButton = false;
+    $scope.page = page
+    $http.post('/Box/',{
+      page: page,
+      section: $scope.section,
+      content: $scope.caption
+    })
+    .success(function(response){
+      console.log("Dynamic put success: " )
+      console.log(response);
+    })
+    .error(function(err){
+      console.log(err);
+    });
+    $scope.caption = "";
+    $scope.formShow = false;
+    $scope.saveButton = false;
+  };
 });
-//.directive('dynamic', function($http){
-//    // this configures directive
-//    return {
-//        restrict: 'E',
-//        
-//        templateUrl: '/templates/dynamicDiv.html',
-//        scope: {
-//          content: '=',
-//          page: '=',
-//          key: '='
-//        },
-//        link: function($scope, $element, $attrs){
-//            $scope.edit = function(){
-//                // show textarea, setting to true also hides div
-//                $scope.textShow = true;
-//                $scope.saveButton = true;
-//                console.log("Dynamic stuff: " + $scope.page);
-////                console.log("Dynamic: " + $scope.divContent[0].content)
-//            };
-//            $scope.save = function(){
-//                console.log("Directive save clicked" + $scope.content +"  " + $scope.key + "   " + $scope.page);
-//                $scope.textShow = false;
-//                $scope.saveButton = false;
-//
-//                $http.post('/Box', 
-//                   { page: $scope.page,
-//                     key: $scope.key,
-//                     content: $scope.content
-//                   });
-//   
-//            }
-//        }
-//        
-//    }
-//});

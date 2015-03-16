@@ -22,10 +22,6 @@ angular.module('app.directives', [])
       $scope.saveButton = true;
       console.log("Edit...");
     };
-
-    
-//          $http.get('/Box/?sort=' + $scope.id, 
-
     
     $scope.save = function(){
       $scope.textShow = false;
@@ -72,7 +68,7 @@ angular.module('app.directives', [])
         id: $scope.id
       };
       
-      console.log(query);
+    console.log(query);
     
     $http.delete("/Box/" + $scope.id)
       .success(function(response) {
