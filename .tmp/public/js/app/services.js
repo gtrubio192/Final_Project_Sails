@@ -11,7 +11,7 @@ angular.module('app.services', [])
 //          $http.get('/Box/' + $scope.id, 
 //  THIS WORKS
 //      return $http.get("/Box/?sort=createdAt DESC")
-    return $http.get("/Box?where=" + JSON.stringify(query))
+    return $http.get("/Box/?where=" + JSON.stringify(query)+"&?sort=createdAt DESC")
       .success(function(response) {
         console.log("Load gets success");
         console.log(response);
