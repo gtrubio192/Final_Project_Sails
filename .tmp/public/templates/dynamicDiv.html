@@ -1,10 +1,12 @@
 <div id='div1' class="edit" ng-hide="deleted">
-    <button class="btn pull-right" ng-click="edit()">
-        <i class="fa fa-pencil"></i>
-    </button>
-    <button class="btn pull-right" ng-click="deletePost()">
-        <i class="fa fa-times"></i>
-    </button>
+    <div ng-show="true">
+      <button class="btn pull-right" ng-click="edit()">
+          <i class="fa fa-pencil"></i>
+      </button>
+      <button class="btn pull-right" ng-click="deletePost()">
+          <i class="fa fa-times"></i>
+      </button>
+    </div>
     <div>
         <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">
         </textarea>

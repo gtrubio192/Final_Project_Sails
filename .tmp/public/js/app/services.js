@@ -9,7 +9,12 @@ angular.module('app.services', [])
       };
       console.log("Loading...");
 //      return $http.get("/Box?where=" + JSON.stringify(query))
-      return $http.get("/Box")
+      //          $http.get('/Box/' + $scope.id, 
+
+//      $scope.editButtons = true;
+
+      return $http.get("/Box?sort=createdAt DESC")
+//      return $http.get("/Box")
       .success(function(response) {
         console.log("Load gets success");
         console.log(response);

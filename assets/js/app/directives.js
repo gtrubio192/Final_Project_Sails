@@ -22,6 +22,10 @@ angular.module('app.directives', [])
       $scope.saveButton = true;
       console.log("Edit...");
     };
+
+    
+//          $http.get('/Box/?sort=' + $scope.id, 
+
     
     $scope.save = function(){
       $scope.textShow = false;
@@ -39,8 +43,27 @@ angular.module('app.directives', [])
       .error(function(err){
         console.log(err);
       });
-
     };
+    
+//    $scope.postContent = function(){
+//      console.log("Posting...");
+//      console.log($scope.caption);
+//      $scope.textShow = false;
+//      $scope.saveButton = false;
+//      $http.post('/Box/',{
+//        page: $scope.page,
+//        section: $scope.section.section,
+//        content: $scope.caption
+//      })
+//      .success(function(response){
+//        console.log("Dynamic put success: " )
+//        console.log(response);
+//      })
+//      .error(function(err){
+//        console.log(err);
+//      });
+//    };
+    
     $scope.deletePost = function(){
       $scope.deleted = true;
       console.log("Deleting...");

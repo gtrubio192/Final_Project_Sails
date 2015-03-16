@@ -3,10 +3,43 @@
 angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
 	$scope.test = 'You\'re Home';
-  
+  $scope.formShow = false;
   SectionService.load('home').then(function(response){
     $scope.sections = response.data;
   });
+  
+// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+  $scope.signIn = function(){
+    console.log("Signing in");
+//    $scope.user = prompt("UserName: ");
+//    $scope.pass = prompt("Password: ");
+    $scope.editButtons = true;
+  };
+  
+  $scope.postContent = function(){
+    console.log("Posting...");
+    console.log($scope.caption);
+    $scope.textShow = false;
+    $scope.saveButton = false;
+    $http.post('/Box/',{
+      page: $scope.page,
+      section: $scope.section,
+      content: $scope.caption
+    })
+    .success(function(response){
+      console.log("Dynamic put success: " )
+      console.log(response);
+    })
+    .error(function(err){
+      console.log(err);
+    });
+    $scope.caption = "";
+    $scope.formShow = false;
+    $scope.saveButton = false;
+  };
+  
+// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+  
     
 })
 .controller('AboutCtrl', function($scope, $state, $http) {
