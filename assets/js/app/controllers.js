@@ -1,7 +1,7 @@
 // Glue
 
 angular.module('app.controllers', [])
-.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService, PostService) {
+.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
 	$scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
@@ -56,7 +56,7 @@ angular.module('app.controllers', [])
 .controller('BlogCtrl', function($scope) {
 	$scope.test = 'Blogs';
 })
-.controller('PostCtrl', function($scope, $http, $state){
+.controller('PostCtrl', function($scope, $http, $state, SectionService){
   console.log("Post Control");
   
   $scope.postContent = function(){
@@ -74,6 +74,8 @@ angular.module('app.controllers', [])
     .success(function(response){
       console.log("Dynamic post success: " )
       console.log(response);
+//      SectionService.load($state.current.name);
+      $state.reload()
     })
     .error(function(err){
       console.log(err);

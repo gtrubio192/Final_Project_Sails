@@ -30,7 +30,8 @@ angular.module('app.directives', [])
       $http.put('/Box/' + $scope.id, {
         page: $scope.page,
         section: $scope.section.section,
-        content: $scope.content
+        content: $scope.content,
+        id: $scope.id
       })
       .success(function(response){
         console.log("Dynamic put success: " )
@@ -40,25 +41,6 @@ angular.module('app.directives', [])
         console.log(err);
       });
     };
-    
-//    $scope.postContent = function(){
-//      console.log("Posting...");
-//      console.log($scope.caption);
-//      $scope.textShow = false;
-//      $scope.saveButton = false;
-//      $http.post('/Box/',{
-//        page: $scope.page,
-//        section: $scope.section.section,
-//        content: $scope.caption
-//      })
-//      .success(function(response){
-//        console.log("Dynamic put success: " )
-//        console.log(response);
-//      })
-//      .error(function(err){
-//        console.log(err);
-//      });
-//    };
     
     $scope.deletePost = function(){
       $scope.deleted = true;
