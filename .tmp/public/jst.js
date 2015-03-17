@@ -24,7 +24,7 @@ this["JST"]["assets/templates/dynamicDiv.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id=\'div1\' class="edit move" ng-hide="deleted">\n    <div ng-show="true">\n      <button class="btn pull-right" ng-click="edit()">\n          <i class="fa fa-pencil"></i>\n      </button>\n      <button class="btn pull-right" ng-click="deletePost()">\n          <i class="fa fa-times"></i>\n      </button>\n    </div>\n    <div>\n        <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n        </textarea>\n    </div>\n    <div ng-show="!textShow">\n<!--        <p content>{{divContent1[0].content}}</p>-->\n        <p>{{content}}</p>\n\n    </div>\n    <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>';
+__p += '<div id=\'div1\' class="edit" ng-hide="deleted">\n    <div ng-show="true">\n      <button class="btn pull-right" ng-click="edit()">\n          <i class="fa fa-pencil"></i>\n      </button>\n      <button class="btn pull-right" ng-click="deletePost()">\n          <i class="fa fa-times"></i>\n      </button>\n    </div>\n    <div>\n        <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n        </textarea>\n    </div>\n    <div ng-show="!textShow">\n<!--        <p content>{{divContent1[0].content}}</p>-->\n        <p>{{content}}</p>\n\n    </div>\n    <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>';
 
 }
 return __p

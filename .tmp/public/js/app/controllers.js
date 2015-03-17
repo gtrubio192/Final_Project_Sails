@@ -5,14 +5,14 @@ angular.module('app.controllers', [])
 	$scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
-    $scope.sections = response.data;
+    // need to sort when a new line is added to textbox
+    $scope.temp = response.data;     
+    $scope.sections = _.sortBy($scope.temp, 'id');
   });
   
 // MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
   $scope.signIn = function(){
     console.log("Signing in");
-//    $scope.user = prompt("UserName: ");
-//    $scope.pass = prompt("Password: ");
     $scope.editButtons = true;
   };
   
@@ -27,7 +27,8 @@ angular.module('app.controllers', [])
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
-    $scope.sections = response.data;
+    $scope.temp = response.data;
+    $scope.sections = _.sortBy($scope.temp, 'id');  
   });
   
   $scope.postContent = function(page){
