@@ -2,14 +2,14 @@
 
 angular.module('app.services', [])
 .service('SectionService', function($http){
-    // page = home, about, etc
+    // page = home, about, blog, etc
     this.load = function(page){
       var pageQuery = {
         page: page
       };
 
       console.log("Loading..." + page);
-      $( "#section.id" ).draggable();
+      $( "#id" ).draggable();
 
 //          $http.get('/Box/' + $scope.id, 
 //  THIS WORKS
@@ -18,11 +18,6 @@ angular.module('app.services', [])
       .success(function(response) {
         console.log("Load gets success");
         console.log(response);
-        ////////
-//        var temp = response;
-//        console.log("Array sorted by ID");
-//        console.log( _.sortBy(temp, 'id'), 'id');
-        ////////
       })
       .error(function(err){
           console.log(err);

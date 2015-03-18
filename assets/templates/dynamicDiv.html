@@ -1,20 +1,23 @@
-<div id='div1' class="edit" ng-hide="deleted">
-    <div ng-show="true">
-      <button class="btn pull-right" ng-click="edit()">
-          <i class="fa fa-pencil"></i>
-      </button>
-      <button class="btn pull-right" ng-click="deletePost()">
-          <i class="fa fa-times"></i>
-      </button>
-    </div>
-    <div>
-        <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">
-        </textarea>
-    </div>
-    <div ng-show="!textShow">
-<!--        <p content>{{divContent1[0].content}}</p>-->
-        <p>{{content}}</p>
-
-    </div>
-    <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>
+<div id='div1' ng-hide="deleted">
+  <div ng-show="editable">
+    <button class="btn pull-right" ng-click="edit()">
+        <i class="fa fa-pencil"></i>
+    </button>
+    <button class="btn pull-right" ng-click="deletePost()">
+        <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div>
+      <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">
+      </textarea>
+  </div>
+  <div ng-show="!textShow">
+      <p>{{content}}</p>
+  </div>
+  <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>
+<!--
+  <div>
+      <button class="btn" ng-click="signIn()">Sign In</button>
+  </div>
+-->
 </div>

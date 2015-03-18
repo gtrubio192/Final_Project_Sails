@@ -4,6 +4,7 @@ angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
 	$scope.test = 'You\'re Home';
   $scope.formShow = false;
+  $scope.editButtons = false;
   SectionService.load('home').then(function(response){
     // need to sort when a new line is added to textbox
     $scope.temp = response.data;     
@@ -14,8 +15,8 @@ angular.module('app.controllers', [])
   $scope.signIn = function(){
     console.log("Signing in");
     $scope.editButtons = true;
+    console.log($scope.editButtons);
   };
-  
 // MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
   console.log($scope.caption);
   
@@ -54,8 +55,23 @@ angular.module('app.controllers', [])
     $scope.saveButton = false;
   };
 })
-.controller('BlogCtrl', function($scope) {
+.controller('BlogCtrl', function($scope, SectionService) {
 	$scope.test = 'Blogs';
+  
+  $scope.formShow = false;
+  SectionService.load('blog').then(function(response){
+    // need to sort when a new line is added to textbox
+    $scope.temp = response.data;     
+    $scope.sections = _.sortBy($scope.temp, 'id');
+  });
+  
+// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+  $scope.signIn = function(){
+    console.log("Signing in");
+    $scope.editButtons = true;
+  };
+// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+  console.log($scope.caption);
 })
 .controller('PostCtrl', function($scope, $http, $state, SectionService){
   console.log("Post Control");

@@ -1,4 +1,4 @@
-<body ng-app='app'>
+<body ng-app='app' class="blog-page">
   <nav class="navbar navbar-inverse navbar-center">
       <a class="navbar-brand navbar-center" href="#" ui-sref-active="active" ui-sref="home"><span>Home</span></a>
       <a class="navbar-brand navbar-center" href="#" ui-sref-active="active" ui-sref="about"><span>About</span></a>
@@ -15,7 +15,6 @@
     <br>
   
     <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-       Caption input
       <div>
         <div>
           <textarea rows="4" cols="70" ng-model="caption" type="text" placeholder="type here..." ></textarea>

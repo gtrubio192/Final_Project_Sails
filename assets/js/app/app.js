@@ -6,7 +6,7 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
     // chaining .state(name, { config object about this route });
-    // another anular method, just like .controller or .factory
+    // another angular method, just like .controller or .factory
 	.state('home', {
         // name in url, what will appear in browser appended to url
 		url: "/home",

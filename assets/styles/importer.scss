@@ -1,8 +1,19 @@
 .content{
-    margin-top: 2em;
+  margin-top: 2em;
 }
 .edit{
-     border: 1px solid gray;
-     margin-top: 2em;
-     padding: 1em 1.5em 1em 1.5em;
+  border: 2px solid gray;
+  margin-top: 2em;
+  padding: 1.5em 1.5em 1em 1.5em;
+  background-color: white;
+
+}
+.blog-page{
+  background-color: lightgray;
+}
+.blog{
+  border: 2px solid gray;
+  background-color: white;
+  margin-top: 2em;
+
 }

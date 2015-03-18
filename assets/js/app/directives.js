@@ -12,7 +12,8 @@ angular.module('app.directives', [])
       page: '=',
       key: '=',
       section: '=',
-      id: '='
+      id: '=',
+      editable: '='
   },
 
   link: function($scope, $element, $attrs){
@@ -50,19 +51,24 @@ angular.module('app.directives', [])
         id: $scope.id
       };
       
-    console.log(query);
-    
-    $http.delete("/Box/" + $scope.id)
-      .success(function(response) {
-        console.log("Delete success");
-        console.log(response);
-//        return response;
-      })
-      .error(function(err){
-          console.log(err);
-      });
-      
+      console.log(query);
+
+      $http.delete("/Box/" + $scope.id)
+        .success(function(response) {
+          console.log("Delete success");
+          console.log(response);
+  //        return response;
+        })
+        .error(function(err){
+            console.log(err);
+        });
     };
+    
+    $scope.signIn = function(){
+      console.log("Signing in");
+      $scope.editable = true;
+      console.log($scope.editButtons);
+  };
   }
   }
 });
