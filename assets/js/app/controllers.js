@@ -11,13 +11,12 @@ angular.module('app.controllers', [])
     $scope.sections = _.sortBy($scope.temp, 'id');
   });
   
-// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
+// Talks to directives via 'editable' variable
   $scope.signIn = function(){
     console.log("Signing in");
     $scope.editButtons = true;
     console.log($scope.editButtons);
   };
-// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
   console.log($scope.caption);
   
 //  $scope.post = PostService.post;
@@ -32,27 +31,10 @@ angular.module('app.controllers', [])
     $scope.sections = _.sortBy($scope.temp, 'id');  
   });
   
-  $scope.postContent = function(page){
-    console.log("Posting..." + page);
-    console.log($scope.caption);
-    $scope.textShow = false;
-    $scope.saveButton = false;
-    $scope.page = page
-    $http.post('/Box/',{
-      page: $scope.page,
-      section: $scope.section,
-      content: $scope.caption
-    })
-    .success(function(response){
-      console.log("Dynamic put success: " )
-      console.log(response);
-    })
-    .error(function(err){
-      console.log(err);
-    });
-    $scope.caption = "";
-    $scope.formShow = false;
-    $scope.saveButton = false;
+  $scope.signIn = function(){
+    console.log("Signing in");
+    $scope.editButtons = true;
+    console.log($scope.editButtons);
   };
 })
 .controller('BlogCtrl', function($scope, SectionService) {
@@ -75,7 +57,6 @@ angular.module('app.controllers', [])
 })
 .controller('PostCtrl', function($scope, $http, $state, SectionService){
   console.log("Post Control");
-  
   $scope.postContent = function(){
     console.log("State ");
     console.log($state.current.name);
@@ -100,5 +81,12 @@ angular.module('app.controllers', [])
 
     $scope.formShow = false;
     $scope.saveButton = false;
+  };
+})
+.controller("SignInCtrl", function($scope){
+    $scope.signIn = function(){
+    console.log("Signing in");
+    $scope.editButtons = true;
+    console.log($scope.editButtons);
   };
 });

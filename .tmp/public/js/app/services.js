@@ -9,7 +9,7 @@ angular.module('app.services', [])
       };
 
       console.log("Loading..." + page);
-      $( "#id" ).draggable();
+      $( ".move" ).draggable();
 
 //          $http.get('/Box/' + $scope.id, 
 //  THIS WORKS

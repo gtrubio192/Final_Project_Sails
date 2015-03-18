@@ -17,6 +17,9 @@ angular.module('app.directives', [])
   },
 
   link: function($scope, $element, $attrs){
+    $( ".move" ).draggable();
+
+    
     $scope.edit = function(){
       // show textarea, setting to true also hides div
       $scope.textShow = true;
@@ -63,12 +66,6 @@ angular.module('app.directives', [])
             console.log(err);
         });
     };
-    
-    $scope.signIn = function(){
-      console.log("Signing in");
-      $scope.editable = true;
-      console.log($scope.editButtons);
-  };
   }
   }
 });
