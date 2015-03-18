@@ -2,21 +2,39 @@
 
 angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
-	$scope.test = 'You\'re Home';
+  $( ".move" ).draggable();
+
+  $( ".move" ).draggable( "disable" );
+
+  $scope.test = 'You\'re Home';
   $scope.formShow = false;
   $scope.editButtons = false;
   SectionService.load('home').then(function(response){
+    // Need to set position of each div
+//    $("#secondElementId").offset({ top: offset.top, left: offset.left})
     // need to sort when a new line is added to textbox
-    $scope.temp = response.data;     
-    $scope.sections = _.sortBy($scope.temp, 'id');
+    $scope.sections = _.sortBy(response.data, 'id');
+//    console.log("before json parse: ");
+//    console.log(typeof $scope.sections[0].position);
+//    $scope.sections[0].position = JSON.parse($scope.sections[0].position);
+    for(var i = 0; i < $scope.sections.length; i++)
+    {
+      $scope.sections[i].position = JSON.parse($scope.sections[i].position);
+      console.log("Sections and Response.data type: " + i);
+      console.log($scope.sections[i].position);
+    }
+
+
+    
   });
   
 // Talks to directives via 'editable' variable
   $scope.signIn = function(){
     console.log("Signing in");
     $scope.editButtons = true;
-    console.log($scope.editButtons);
-  };
+    $( ".move" ).draggable({ stack: ".move" }).sortable({
+      revert: true
+    });  };
   console.log($scope.caption);
   
 //  $scope.post = PostService.post;
@@ -27,8 +45,7 @@ angular.module('app.controllers', [])
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
-    $scope.temp = response.data;
-    $scope.sections = _.sortBy($scope.temp, 'id');  
+    $scope.sections = _.sortBy(response.data, 'id');  
   });
   
   $scope.signIn = function(){
@@ -43,8 +60,7 @@ angular.module('app.controllers', [])
   $scope.formShow = false;
   SectionService.load('blog').then(function(response){
     // need to sort when a new line is added to textbox
-    $scope.temp = response.data;     
-    $scope.sections = _.sortBy($scope.temp, 'id');
+    $scope.sections = _.sortBy(response.data, 'id');
   });
   
 // MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...

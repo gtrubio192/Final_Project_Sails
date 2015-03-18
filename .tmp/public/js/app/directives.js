@@ -13,13 +13,16 @@ angular.module('app.directives', [])
       key: '=',
       section: '=',
       id: '=',
-      editable: '='
+      editable: '=',
+      position: '='
   },
 
   link: function($scope, $element, $attrs){
-    $( ".move" ).draggable();
+//    $( ".move" ).draggable();
+//    $( ".move" ).draggable({ stack: ".move" }).sortable({
+//      revert: true
+//    });
 
-    
     $scope.edit = function(){
       // show textarea, setting to true also hides div
       $scope.textShow = true;
@@ -31,11 +34,27 @@ angular.module('app.directives', [])
       $scope.textShow = false;
       $scope.saveButton = false;
       console.log("Saving...");
+      var div1 = $( "#div1" );
+
+      var position = div1.position();
+      var left = position.left;
+      var top = position.top;
+      console.log("Position offset ");
+      console.log(position);
+      console.log("left");
+      console.log(left);
+
+      position.top += 'px';
+      position.left += 'px';
+
       $http.put('/Box/' + $scope.id, {
         page: $scope.page,
         section: $scope.section.section,
         content: $scope.content,
-        id: $scope.id
+        id: $scope.id,
+        positionLeft: left,
+        positionTop: top,
+        position: JSON.stringify(position)
       })
       .success(function(response){
         console.log("Dynamic put success: " )

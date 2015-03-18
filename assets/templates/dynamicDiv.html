@@ -1,4 +1,6 @@
-<div id='div1' class="edit move" ng-hide="deleted">
+<!-- set move to true using ng-class once signed in successfully -->
+<div id='div1' class="edit" ng-hide="deleted"
+     ng-style="position">
   <div ng-show="editable">
     <button class="btn pull-right" ng-click="edit()">
         <i class="fa fa-pencil"></i>
@@ -12,12 +14,8 @@
       </textarea>
   </div>
   <div ng-show="!textShow">
+      <div>{{ position }}</div>
       <p>{{content}}</p>
   </div>
   <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>
-<!--
-  <div>
-      <button class="btn" ng-click="signIn()">Sign In</button>
-  </div>
--->
 </div>
