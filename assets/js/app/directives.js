@@ -1,7 +1,7 @@
 // DOM manipulation
 
 angular.module('app.directives', [])
-.directive('dynamic', function($http){
+.directive('dynamic', function($http, $state){
     // this configures directive
   return {
     restrict: 'E',
@@ -29,7 +29,7 @@ angular.module('app.directives', [])
       $scope.saveButton = true;
       console.log("Edit...");
       
-      $( ".move" ).draggable({ stack: ".move" }); 
+//      $( ".move" ).draggable({ stack: ".move" }); 
     };
     
     $scope.save = function(){
@@ -38,16 +38,21 @@ angular.module('app.directives', [])
       console.log("Saving...");
       var div1 = $( "#div1" );
 
-      var position = div1.position();
+      var position = div1.offset();
       var left = position.left;
       var top = position.top;
-      console.log("Position offset ");
-      console.log(position);
-      console.log("left");
-      console.log(left);
+//      console.log("Position offset 1");
+//      console.log(position);
+//      console.log("left");
+//      console.log(left);
 
       position.top += 'px';
       position.left += 'px';
+      
+      //use content.replace("\n", "<br>")
+      $scope.content = $scope.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+      console.log("Replaced newlines: " + $scope.content);
+
 
       $http.put('/Box/' + $scope.id, {
         page: $scope.page,
@@ -61,6 +66,8 @@ angular.module('app.directives', [])
       .success(function(response){
         console.log("Dynamic put success: " )
         console.log(response);
+        $state.reload()
+      
       })
       .error(function(err){
         console.log(err);

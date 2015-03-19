@@ -1,6 +1,9 @@
 .content{
   margin-top: 2em;
 }
+.relativeParent{
+  position: relative;
+}
 .edit{
   border: 2px solid gray;
   margin-top: 2em;
@@ -15,4 +18,7 @@
   border: 2px solid gray;
   background-color: white;
   margin-top: 2em;
+}
+footer{
+  
 }

@@ -1,5 +1,5 @@
 <!-- set move to true using ng-class once signed in successfully -->
-<div id='div1' class="edit" ng-hide="deleted"
+<div id='div1'  ng-hide="deleted"
      ng-style="position">
   <div ng-show="editable">
     <button class="btn pull-right" ng-click="edit()">
@@ -14,8 +14,9 @@
       </textarea>
   </div>
   <div ng-show="!textShow">
-      <div>{{ position }}</div>
-      <p>{{content}}</p>
+<!--      <p>{{content}}</p>-->
+      <p ng-bind-html='content'></p>
+
   </div>
   <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>
 </div>

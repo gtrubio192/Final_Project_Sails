@@ -24,7 +24,7 @@ this["JST"]["assets/templates/dynamicDiv.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<!-- set move to true using ng-class once signed in successfully -->\n<div id=\'div1\' class="edit" ng-hide="deleted"\n     ng-style="position">\n  <div ng-show="editable">\n    <button class="btn pull-right" ng-click="edit()">\n        <i class="fa fa-pencil"></i>\n    </button>\n    <button class="btn pull-right" ng-click="deletePost()">\n        <i class="fa fa-times"></i>\n    </button>\n  </div>\n  <div>\n      <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n      </textarea>\n  </div>\n  <div ng-show="!textShow">\n      <div>{{ position }}</div>\n      <p>{{content}}</p>\n  </div>\n  <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>\n';
+__p += '<!-- set move to true using ng-class once signed in successfully -->\n<div id=\'div1\'  ng-hide="deleted"\n     ng-style="position">\n  <div ng-show="editable">\n    <button class="btn pull-right" ng-click="edit()">\n        <i class="fa fa-pencil"></i>\n    </button>\n    <button class="btn pull-right" ng-click="deletePost()">\n        <i class="fa fa-times"></i>\n    </button>\n  </div>\n  <div>\n      <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n      </textarea>\n  </div>\n  <div ng-show="!textShow">\n<!--      <p>{{content}}</p>-->\n      <p ng-bind-html=\'content\'></p>\n\n  </div>\n  <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>\n';
 
 }
 return __p
@@ -34,7 +34,7 @@ this["JST"]["assets/templates/home.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container text-center" >\n    <div class="move">\n        <p class="pull-right" >\n            <i class="fa fa-star"></i>\n        </p>\n    </div>\n\t<h1>{{ test }}</h1>\n\n  <br>\n  <br>\n  <div>\n    <dynamic ng-repeat="section in sections"\n             content="section.content"  \n             page="\'home\'"\n             section="section"\n             id="section.id"\n             position="section.position"\n             editable="editButtons"\n             contenteditable="false"\n             class="move col-lg-8">\n\n    </dynamic>\n  </div>\n  <div class="col-lg-4 edit move"><h2>Sidebar</h2></div>\n  <div class="col-lg-12">\n    <button class="btn" ng-click="signIn()">Sign In</button>\n  </div>\n</div>';
+__p += '<div class="container text-center" >\n    <div class="move">\n        <p class="pull-right" >\n            <i class="fa fa-star"></i>\n        </p>\n    </div>\n\t<h1>{{ test }}</h1>\n\n  <br>\n  <br>\n  <div class="relativeParent">\n    <dynamic ng-repeat="section in sections"\n             content="section.content"  \n             page="\'home\'"\n             section="section"\n             id="section.id"\n             position="section.position"\n             editable="editButtons"\n             contenteditable="false"\n             class="move edit col-lg-10">\n\n    </dynamic>\n  </div>\n  <footer class="col-lg-12">\n    <button class="btn" ng-click="signIn()">Sign In</button>\n  </footer>\n\n</div>';
 
 }
 return __p

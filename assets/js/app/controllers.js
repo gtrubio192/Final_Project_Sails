@@ -1,7 +1,7 @@
 // Glue
 
 angular.module('app.controllers', [])
-.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
+.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService, $sce) {
   $( ".move" ).draggable();
   $( ".move" ).draggable( "disable" );
 
@@ -19,12 +19,12 @@ angular.module('app.controllers', [])
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
-      console.log("Sections and Response.data type: " + i);
-      console.log($scope.sections[i].position);
+//      console.log("Sections and Response.data type: " + i);
+//      console.log($scope.sections[i].position);
+      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      console.log("Content with <br>: " + i);
+      console.log($scope.sections[i].content);
     }
-
-
-    
   });
   
 // Talks to directives via 'editable' variable
@@ -34,7 +34,7 @@ angular.module('app.controllers', [])
 //    $( ".move" ).draggable({ stack: ".move" }).sortable({
 //      revert: false
 //    }); 
-};
+  };
   console.log($scope.caption);
   
 //  $scope.post = PostService.post;
