@@ -19,8 +19,6 @@ angular.module('app.controllers', [])
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
-//      console.log("Sections and Response.data type: " + i);
-//      console.log($scope.sections[i].position);
       $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
       console.log("Content with <br>: " + i);
       console.log($scope.sections[i].content);
@@ -45,7 +43,15 @@ angular.module('app.controllers', [])
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
-    $scope.sections = _.sortBy(response.data, 'id');  
+    $scope.sections = _.sortBy(response.data, 'id'); 
+    
+    for(var i = 0; i < $scope.sections.length; i++)
+    {
+      $scope.sections[i].position = JSON.parse($scope.sections[i].position);
+      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      console.log("Content with <br>: " + i);
+      console.log($scope.sections[i].content);
+    }
   });
   
   $scope.signIn = function(){
@@ -59,8 +65,14 @@ angular.module('app.controllers', [])
   
   $scope.formShow = false;
   SectionService.load('blog').then(function(response){
-    // need to sort when a new line is added to textbox
     $scope.sections = _.sortBy(response.data, 'id');
+    for(var i = 0; i < $scope.sections.length; i++)
+    {
+      $scope.sections[i].position = JSON.parse($scope.sections[i].position);
+      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      console.log("Content with <br>: " + i);
+      console.log($scope.sections[i].content);
+    }
   });
   
 // MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
@@ -105,4 +117,10 @@ angular.module('app.controllers', [])
     $scope.editButtons = true;
     console.log($scope.editButtons);
   };
+})
+.controller("ManufacturerCtrl", function($scope){
+  
+})
+.controller("ContactCtrl", function($scope){
+  
 });
