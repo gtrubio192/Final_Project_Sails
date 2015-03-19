@@ -28,6 +28,8 @@ angular.module('app.directives', [])
       $scope.textShow = true;
       $scope.saveButton = true;
       console.log("Edit...");
+      
+      $( ".move" ).draggable({ stack: ".move" }); 
     };
     
     $scope.save = function(){

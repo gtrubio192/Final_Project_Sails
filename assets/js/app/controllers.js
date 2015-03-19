@@ -3,7 +3,6 @@
 angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService) {
   $( ".move" ).draggable();
-
   $( ".move" ).draggable( "disable" );
 
   $scope.test = 'You\'re Home';
@@ -32,9 +31,10 @@ angular.module('app.controllers', [])
   $scope.signIn = function(){
     console.log("Signing in");
     $scope.editButtons = true;
-    $( ".move" ).draggable({ stack: ".move" }).sortable({
-      revert: true
-    });  };
+//    $( ".move" ).draggable({ stack: ".move" }).sortable({
+//      revert: false
+//    }); 
+};
   console.log($scope.caption);
   
 //  $scope.post = PostService.post;
