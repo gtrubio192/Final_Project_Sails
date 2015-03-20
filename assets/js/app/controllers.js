@@ -38,13 +38,13 @@ angular.module('app.controllers', [])
 //  $scope.post = PostService.post;
     
 })
-.controller('AboutCtrl', function($scope, $state, $http, SectionService) {
+.controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce) {
   $scope.test = 'About';
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
     $scope.sections = _.sortBy(response.data, 'id'); 
-    
+//    console.log("About content " + $scope.sections[0].position);
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
@@ -60,7 +60,7 @@ angular.module('app.controllers', [])
     console.log($scope.editButtons);
   };
 })
-.controller('BlogCtrl', function($scope, SectionService) {
+.controller('BlogCtrl', function($scope, SectionService, $sce) {
 	$scope.test = 'Blogs';
   
   $scope.formShow = false;
@@ -118,9 +118,9 @@ angular.module('app.controllers', [])
     console.log($scope.editButtons);
   };
 })
-.controller("ManufacturerCtrl", function($scope){
+.controller("ManufacturerCtrl", function($scope, $sce){
   
 })
-.controller("ContactCtrl", function($scope){
+.controller("ContactCtrl", function($scope, $sce){
   
 });

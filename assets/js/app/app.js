@@ -26,8 +26,8 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		controller: "AboutCtrl"
 	})
   .state('post', {
-//		url: "/about",
-//		templateUrl: "templates/about.html",
+		url: "/about",
+		templateUrl: "templates/about.html",
 		controller: "PostCtrl"
 	})
   .state('contact', {

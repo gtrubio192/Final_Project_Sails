@@ -19,10 +19,14 @@
   margin-top: 2em; }
 
 section {
-  z-index: 1000; }
+  z-index: 2000; }
 
 /*!
  */
+.sister-company {
+  margin: 0 auto;
+  text-align: center; }
+
 body {
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
   background: url("../images/iStock_000007054684Small.jpg") no-repeat center center fixed;
