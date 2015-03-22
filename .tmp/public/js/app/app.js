@@ -39,6 +39,16 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		url: "/manufacturer",
 		templateUrl: "templates/manufacturer.html",
 		controller: "ManufacturerCtrl"
+	})
+  .state('login', {
+		url: '/user/login',
+		templateUrl: 'templates/login.html',
+		controller: 'LoginCtrl'
+	})
+	.state('register', {
+		url: '/user/register',
+		templateUrl: 'templates/register.html',
+		controller: 'RegisterCtrl'
 	});
 // specifies what the defualt page is
 	$urlRouterProvider.otherwise("/home");

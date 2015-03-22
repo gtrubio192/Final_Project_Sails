@@ -123,4 +123,121 @@ angular.module('app.controllers', [])
 })
 .controller("ContactCtrl", function($scope, $sce){
   
+})
+.controller('LoginCtrl', function($scope, $state, $http, Validate) {
+	$scope.error = {
+		identifier: '',
+		password: '',
+		generic: []
+	};
+	$scope.htmlCredentials = {
+		identifier: '',
+		password: ''
+	};
+
+	$scope.login = function(htmlCredentials) {
+		$scope.error = Validate.credentials(htmlCredentials);
+
+		if(!Validate.hasError($scope.error)) {
+			$http.post('/auth/user', htmlCredentials)
+			.success(function(res) {
+				console.log('Success!');
+				console.log(res);
+
+				if(res.success){
+          $scope.editButtons = true;
+          $state.go($state.current.name);
+
+//					$state.go('home');
+				} else {
+					$scope.error.generic = res.errors;
+				}
+				console.log($scope.error);
+			})
+			.error(function(err){
+				console.log('error');
+				$scope.errorValidate = 'ERROR';
+				return $scope.errorValidate
+			});
+		}
+	};
+})
+.controller('NavCtrl', function($scope, $http, $state) {
+	$scope.logout = function() {
+		$http.get('/logout');
+		$state.go('login');
+	};
+})
+.controller('RegisterCtrl', function($scope, $state, $http, Validate) {
+	$scope.error = {
+		identifier: '',
+		password: '',
+		generic: []
+	};
+	$scope.credentials = {
+		identifier: '',
+		password: ''
+	};
+//	$scope.errorProfile = {
+//		firstName: '',
+//		lastName: '',
+//		dateOfBirth: '',
+//		mobilePhone: '',
+//		generic: []
+//	};
+//	$scope.userProfile = {
+//		firstName: '',
+//		lastName: '',
+//		dateOfBirth: '',
+//		mobilePhone: '',
+//	};
+
+	$scope.register = function(credentials, userProfile) {
+		$scope.error = Validate.credentials(credentials);
+//		$scope.errorProfile = Validate.userProfile(userProfile);
+		
+		if(!Validate.hasError($scope.error)) {
+			var registerObj = {
+				username: credentials.identifier,
+				email: credentials.identifier,
+				password: credentials.password
+			};
+
+//			var data = {
+//				user: '',
+//				firstName: userProfile.firstName,
+//				lastName: userProfile.lastName,
+//				dateOfBirth: userProfile.dateOfBirth,
+//				mobilePhone: userProfile.mobilePhone,
+//				email: credentials.identifier,
+//				password: credentials.password,
+//			};
+
+			console.log(registerObj);
+			
+			$http.post('/auth/local/register', registerObj)
+			.success(function(res) {
+				data.user = res.user.id;
+				console.log('Success!');
+				console.log(res);
+        $state.go('home');
+
+
+//				$http.post('/UserProfile', data)
+//				.success(function(newUserProfile) {
+//					console.log(newUserProfile);
+//					$state.go('dashboard');
+//				})
+//				.error(function(err){
+//					console.log(err);
+//				});
+//				console.log(data);
+			})
+			.error(function(err){
+				console.log('error registerting');
+				console.log(err);
+				$scope.err = err;
+			});	
+		}
+	};
 });
