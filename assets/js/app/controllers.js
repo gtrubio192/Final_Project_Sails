@@ -46,18 +46,17 @@ angular.module('app.controllers', [])
     }
   });
 })
-.controller('BlogCtrl', function($scope, SectionService, $sce) {
+.controller('BlogCtrl', function($scope, SectionService, $sce, $rootScope) {
 	$scope.test = 'Blogs';
-  
+  $scope.editButtons = $rootScope.editButtons1;
   $scope.formShow = false;
+  
   SectionService.load('blog').then(function(response){
     $scope.sections = _.sortBy(response.data, 'id');
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
       $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
-      console.log("Content with <br>: " + i);
-      console.log($scope.sections[i].content);
     }
   });
   
@@ -81,7 +80,7 @@ angular.module('app.controllers', [])
       console.log("Dynamic post success: " )
       console.log(response);
 //      SectionService.load($state.current.name);
-      $state.reload()
+      $state.reload();
     })
     .error(function(err){
       console.log(err);
@@ -119,12 +118,13 @@ angular.module('app.controllers', [])
         
 				$state.go('home');
         $rootScope.editButtons1 = true;
-
+        $rootScope.signedIn = true;
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            console.log("Moved from " + from + " to " + to);
+        });
 				if(res.success){
 //          $scope.editButtons = true;
-//          $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
-//            $scope.previousState = from;
-//        });
+
           
 //          $state.go($scope.previousState);
 
@@ -145,8 +145,10 @@ angular.module('app.controllers', [])
 .controller('NavCtrl', function($scope, $http, $state, $rootScope) {
 	$scope.logout = function() {
 		$http.get('/logout');
-    $rootScope.editButtons = false;
-		$state.go('login');
+    $rootScope.editButtons = !$rootScope.editButtons;
+    $rootScope.signedIn = !$rootScope.signedIn;
+
+		$state.go('home');
 	};
 })
 .controller('RegisterCtrl', function($scope, $state, $http, Validate) {
@@ -188,7 +190,7 @@ angular.module('app.controllers', [])
 			.error(function(err){
 				console.log('error registerting');
 				console.log(err);
-        				console.log(data);
+        console.log(data);
 
 				$scope.err = err;
 			});	

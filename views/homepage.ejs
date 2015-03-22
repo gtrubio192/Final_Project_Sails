@@ -85,11 +85,17 @@
       </div>
     </div>
   </footer>
-  
-  <button class="btn" ng-click="signIn()">
-    <a href="#" ui-sref-active="active" ui-sref="login">Sign In</a>
-  </button>
-  <button class="btn" ng-click="register()">
-    <a href="#" ui-sref-active="active" ui-sref="register">Register</a>
-  </button>
+  <section ng-hide="signedIn">
+    <button class="btn" ng-click="signIn()">
+      <a href="#" ui-sref-active="active" ui-sref="login">Sign In</a>
+    </button>
+    <button class="btn" ng-click="register()">
+      <a href="#" ui-sref-active="active" ui-sref="register">Register</a>
+    </button>
+  </section>
+  <section ng-controller="NavCtrl" ng-show="signedIn">
+    <button class="btn" ng-click="logout()">
+      Logout
+    </button>
+  </section>
 </body>

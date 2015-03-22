@@ -88,6 +88,7 @@ angular.module('app.directives', [])
         .success(function(response) {
           console.log("Delete success");
           console.log(response);
+          $state.reload();
   //        return response;
         })
         .error(function(err){
