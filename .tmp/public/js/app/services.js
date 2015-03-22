@@ -31,14 +31,12 @@ angular.module('app.services', [])
 				identifier: '',
 				password: ''
 			};
-			
+
 			// If identifier property of credentials object above = falsey (null, undefined, 0)
 			if(!credentials.identifier) {
 				error.identifier = 'Enter your email address.';
 			}
-			// If identifier property of credentials object above is not an email 
-			// (using validator.js method isEmail)
-			else if(!validator.isEmail(credentials.identifier)) {
+			else if(credentials.identifier.indexOf('@') === -1 && credentials.identifier.indexOf('.com') === -1) {
 				error.identifier = 'You must enter a valid email.';
 			}
 			// If identifier property of credentials object above = falsey (null, undefined, 0)

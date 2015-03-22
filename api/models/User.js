@@ -5,6 +5,10 @@ var User = {
   attributes: {
     username  : { type: 'string', unique: true },
     email     : { type: 'email',  unique: true },
+//    password: {
+//		  type: 'string',
+//		  required: true
+//		},
     passports : { collection: 'Passport', via: 'user' }
   }
 };

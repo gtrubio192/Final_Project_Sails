@@ -1,13 +1,15 @@
 // Glue
 
 angular.module('app.controllers', [])
-.controller('HomeCtrl', function($scope, $http, $interval,$timeout, SectionService, $sce) {
+.controller('HomeCtrl', function($scope,$rootScope, $http, $interval,$timeout, SectionService, $sce) {
   $( ".move" ).draggable();
   $( ".move" ).draggable( "disable" );
 
+  $scope.editButtons = $rootScope.editButtons1;
+  console.log($scope.editButtons);
   $scope.test = 'You\'re Home';
   $scope.formShow = false;
-  $scope.editButtons = false;
+//  $scope.editButtons = false;
   SectionService.load('home').then(function(response){
     // Need to set position of each div
 //    $("#secondElementId").offset({ top: offset.top, left: offset.left})
@@ -24,22 +26,12 @@ angular.module('app.controllers', [])
       console.log($scope.sections[i].content);
     }
   });
-  
-// Talks to directives via 'editable' variable
-  $scope.signIn = function(){
-    console.log("Signing in");
-    $scope.editButtons = true;
-//    $( ".move" ).draggable({ stack: ".move" }).sortable({
-//      revert: false
-//    }); 
-  };
   console.log($scope.caption);
-  
-//  $scope.post = PostService.post;
     
 })
-.controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce) {
+.controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
   $scope.test = 'About';
+  $scope.editButtons = $rootScope.editButtons1;
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
@@ -53,12 +45,6 @@ angular.module('app.controllers', [])
       console.log($scope.sections[i].content);
     }
   });
-  
-  $scope.signIn = function(){
-    console.log("Signing in");
-    $scope.editButtons = true;
-    console.log($scope.editButtons);
-  };
 })
 .controller('BlogCtrl', function($scope, SectionService, $sce) {
 	$scope.test = 'Blogs';
@@ -75,12 +61,6 @@ angular.module('app.controllers', [])
     }
   });
   
-// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
-  $scope.signIn = function(){
-    console.log("Signing in");
-    $scope.editButtons = true;
-  };
-// MOVE TO DIRECTIVES. CURRENTLY NOT WORKING FROM THAT FILE...
   console.log($scope.caption);
 })
 .controller('PostCtrl', function($scope, $http, $state, SectionService){
@@ -111,20 +91,13 @@ angular.module('app.controllers', [])
     $scope.saveButton = false;
   };
 })
-.controller("SignInCtrl", function($scope){
-    $scope.signIn = function(){
-    console.log("Signing in");
-    $scope.editButtons = true;
-    console.log($scope.editButtons);
-  };
-})
 .controller("ManufacturerCtrl", function($scope, $sce){
   
 })
 .controller("ContactCtrl", function($scope, $sce){
   
 })
-.controller('LoginCtrl', function($scope, $state, $http, Validate) {
+.controller('LoginCtrl', function($scope, $state, $http, Validate,$rootScope) {
 	$scope.error = {
 		identifier: '',
 		password: '',
@@ -139,14 +112,21 @@ angular.module('app.controllers', [])
 		$scope.error = Validate.credentials(htmlCredentials);
 
 		if(!Validate.hasError($scope.error)) {
-			$http.post('/auth/user', htmlCredentials)
+			$http.post('/auth/local', htmlCredentials)
 			.success(function(res) {
 				console.log('Success!');
 				console.log(res);
+        
+				$state.go('home');
+        $rootScope.editButtons1 = true;
 
 				if(res.success){
-          $scope.editButtons = true;
-          $state.go($state.current.name);
+//          $scope.editButtons = true;
+//          $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+//            $scope.previousState = from;
+//        });
+          
+//          $state.go($scope.previousState);
 
 //					$state.go('home');
 				} else {
@@ -162,9 +142,10 @@ angular.module('app.controllers', [])
 		}
 	};
 })
-.controller('NavCtrl', function($scope, $http, $state) {
+.controller('NavCtrl', function($scope, $http, $state, $rootScope) {
 	$scope.logout = function() {
 		$http.get('/logout');
+    $rootScope.editButtons = false;
 		$state.go('login');
 	};
 })
@@ -178,23 +159,8 @@ angular.module('app.controllers', [])
 		identifier: '',
 		password: ''
 	};
-//	$scope.errorProfile = {
-//		firstName: '',
-//		lastName: '',
-//		dateOfBirth: '',
-//		mobilePhone: '',
-//		generic: []
-//	};
-//	$scope.userProfile = {
-//		firstName: '',
-//		lastName: '',
-//		dateOfBirth: '',
-//		mobilePhone: '',
-//	};
-
 	$scope.register = function(credentials, userProfile) {
 		$scope.error = Validate.credentials(credentials);
-//		$scope.errorProfile = Validate.userProfile(userProfile);
 		
 		if(!Validate.hasError($scope.error)) {
 			var registerObj = {
@@ -203,39 +169,27 @@ angular.module('app.controllers', [])
 				password: credentials.password
 			};
 
-//			var data = {
-//				user: '',
-//				firstName: userProfile.firstName,
-//				lastName: userProfile.lastName,
-//				dateOfBirth: userProfile.dateOfBirth,
-//				mobilePhone: userProfile.mobilePhone,
-//				email: credentials.identifier,
-//				password: credentials.password,
-//			};
+			var data = {
+				user: '',
+				email: credentials.identifier,
+				password: credentials.password
+			};
 
 			console.log(registerObj);
 			
 			$http.post('/auth/local/register', registerObj)
 			.success(function(res) {
-				data.user = res.user.id;
+//				data.user = res.user.id;
 				console.log('Success!');
 				console.log(res);
         $state.go('home');
 
-
-//				$http.post('/UserProfile', data)
-//				.success(function(newUserProfile) {
-//					console.log(newUserProfile);
-//					$state.go('dashboard');
-//				})
-//				.error(function(err){
-//					console.log(err);
-//				});
-//				console.log(data);
 			})
 			.error(function(err){
 				console.log('error registerting');
 				console.log(err);
+        				console.log(data);
+
 				$scope.err = err;
 			});	
 		}
