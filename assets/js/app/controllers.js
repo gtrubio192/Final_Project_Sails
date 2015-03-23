@@ -11,8 +11,8 @@ angular.module('app.controllers', [])
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
-
   });
+  
   $scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
@@ -29,8 +29,11 @@ angular.module('app.controllers', [])
 })
 .controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
   $scope.test = 'About';
-  $scope.editButtons = $rootScope.editButtons;
-
+  $rootScope.$on('logout', function(){
+      $scope.editButtons = $rootScope.editButtons;
+      console.log($scope.editButtons);
+  });
+  
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
     $scope.sections = _.sortBy(response.data, 'id'); 
@@ -45,7 +48,10 @@ angular.module('app.controllers', [])
 })
 .controller('BlogCtrl', function($scope, SectionService, $sce, $rootScope) {
 	$scope.test = 'Blogs';
-  $scope.editButtons = $rootScope.editButtons;
+  $rootScope.$on('logout', function(){
+      $scope.editButtons = $rootScope.editButtons;
+      console.log($scope.editButtons);
+  });
   $scope.formShow = false;
   
   SectionService.load('blog').then(function(response){

@@ -1,3 +1,4 @@
+<!--
 <section id="register-container" ng-controller="RegisterCtrl">
 	<h2>Register</h2>
 	<p ng-bind="err"></p>
@@ -5,7 +6,9 @@
 		<div id="register-form">
 			<div class="form-group" ng-class="error.identifier ? 'error' : ''">
 				<label for="email">Email address</label>
-				<input class="form-control" type="text" id="email" placeholder="Enter Your email" ng-model="credentials.identifier">
+				<input class="form-control" type="text" 
+               id="email" placeholder="Enter Your email" 
+               ng-model="credentials.identifier">
 				<p class="error" ng-bind="error.identifier"></p>
 			</div>
 			<div class="form-group" ng-class="error.password ? 'error' : ''">
@@ -17,3 +20,38 @@
 		</div>
 	</form>
 </section>
+-->
+
+<section id="register-container" ng-controller="RegisterCtrl">
+	<form ng-submit="register(credentials, userProfile)" novalidate>
+		<div id="register-form">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Register</h2>
+        </div>
+          <div class="panel-body">
+              <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" 
+                       ng-model="credentials.identifier" 
+                       placeholder="Enter email">
+                <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
+              </div>
+
+              <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" 
+                             ng-model="credentials.password" 
+                             placeholder="Enter Your Password">
+                      <p ng-show="loginError2" class="alert alert-danger" role="alert" ng-bind="passwordError"></p>
+              </div>
+              <button type="submit" class="btn btn-default">Register</button>  
+          </div>
+      </div>
+		</div>
+	</form>
+</section>
+
+
+
+
