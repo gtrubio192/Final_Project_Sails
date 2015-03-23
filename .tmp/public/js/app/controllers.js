@@ -4,20 +4,17 @@ angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope,$rootScope, $http, $interval,$timeout, SectionService, $sce) {
   $( ".move" ).draggable();
   $( ".move" ).draggable( "disable" );
+  $('.carousel').carousel({
+    interval: 3000 //changes the speed
+  });
 
   $scope.editButtons = $rootScope.editButtons1;
   console.log($scope.editButtons);
   $scope.test = 'You\'re Home';
   $scope.formShow = false;
-//  $scope.editButtons = false;
   SectionService.load('home').then(function(response){
-    // Need to set position of each div
-//    $("#secondElementId").offset({ top: offset.top, left: offset.left})
-    // need to sort when a new line is added to textbox
+   // need to sort when a new line is added to textbox
     $scope.sections = _.sortBy(response.data, 'id');
-//    console.log("before json parse: ");
-//    console.log(typeof $scope.sections[0].position);
-//    $scope.sections[0].position = JSON.parse($scope.sections[0].position);
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
@@ -36,7 +33,6 @@ angular.module('app.controllers', [])
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
     $scope.sections = _.sortBy(response.data, 'id'); 
-//    console.log("About content " + $scope.sections[0].position);
     for(var i = 0; i < $scope.sections.length; i++)
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);

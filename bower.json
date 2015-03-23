@@ -22,6 +22,7 @@
     "validator": "~0.0.5",
     "bower": "*",
     "install": "~1.0.4",
-    "validator.js": "~1.1.0"
+    "validator.js": "~1.1.0",
+    "Hover": "~2.0.2"
   }
 }
