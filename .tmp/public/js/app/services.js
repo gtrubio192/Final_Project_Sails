@@ -1,6 +1,29 @@
 // Server calls
 
 angular.module('app.services', [])
+  ////// Aarons ///////////////////////////////////////////
+.service('User', function($rootScope) {
+	var user = null;
+	return {
+		setLoggedInUser: function(u) {
+			user = u;
+			$rootScope.$emit('LOGIN_EVENT', u);
+		},
+		isLoggedIn: function() {
+			console.log(user);
+			if(user === null) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		},
+		getInfo: function() {
+			return user;
+		}
+	};
+})
+  ////// Aarons ///////////////////////////////////////////
 .service('SectionService', function($http){
     // page = home, about, blog, etc
     this.load = function(page){

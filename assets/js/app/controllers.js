@@ -7,9 +7,12 @@ angular.module('app.controllers', [])
   $('.carousel').carousel({
     interval: 3000 //changes the speed
   });
+  
+  $rootScope.$on('logout', function(){
+      $scope.editButtons = $rootScope.editButtons;
+      console.log($scope.editButtons);
 
-  $scope.editButtons = $rootScope.editButtons1;
-  console.log($scope.editButtons);
+  });
   $scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
@@ -26,7 +29,7 @@ angular.module('app.controllers', [])
 })
 .controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
   $scope.test = 'About';
-  $scope.editButtons = $rootScope.editButtons1;
+  $scope.editButtons = $rootScope.editButtons;
 
   $scope.formShow = false;
   SectionService.load('about').then(function(response){
@@ -42,7 +45,7 @@ angular.module('app.controllers', [])
 })
 .controller('BlogCtrl', function($scope, SectionService, $sce, $rootScope) {
 	$scope.test = 'Blogs';
-  $scope.editButtons = $rootScope.editButtons1;
+  $scope.editButtons = $rootScope.editButtons;
   $scope.formShow = false;
   
   SectionService.load('blog').then(function(response){
@@ -109,13 +112,13 @@ angular.module('app.controllers', [])
 		if(!Validate.hasError($scope.error)) {
 			$http.post('/auth/local', htmlCredentials)
 			.success(function(res) {
-				console.log('Success!');
+				console.log('Login Success!');
 				console.log(res);
         
-        $rootScope.editButtons1 = true;
+        $rootScope.editButtons = true;
         $rootScope.signedIn = true;
         console.log("Logged in. Edit and signed in values are: ");
-        console.log($rootScope.editButtons1);
+        console.log($rootScope.editButtons);
         $state.go($rootScope.from);
 			})
 			.error(function(err){
@@ -128,7 +131,6 @@ angular.module('app.controllers', [])
         else if(err.status == '404'){
           $scope.emailError = err.summary;
           $scope.loginError1 = true;
-          console.log("Email wasnt good");
         }
 //				$scope.errorValidate = 'ERROR';
 //				return $scope.errorValidate;
@@ -136,21 +138,32 @@ angular.module('app.controllers', [])
 		}
 	};
 })
-.controller('NavCtrl', function($scope, $http, $state, $rootScope) {
+.controller('NavCtrl', function($scope, $http, $state, $rootScope, User) {
   $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
-      console.log("Moved from, to  ");
-      console.log(from);
-      console.log(to);
       $rootScope.from = from;
       $rootScope.to = to;
   });
+  ////// Aarons ///////////////////////////////////////////
+  $scope.isLoggedIn = User.isLoggedIn();
+	$scope.user = User.getInfo();
+	$rootScope.$on('LOGIN_EVENT', function() {
+		$scope.isLoggedIn = User.isLoggedIn();
+		$scope.user = User.getInfo();
+		console.log('LOGIN HAPPENED');
+		console.log($scope.isLoggedIn);
+	});
+  ////// Aarons ///////////////////////////////////////////
+
 	$scope.logout = function() {
 		$http.get('/logout')
     .success(function(res){
-      console.log("Logged out!");
+      console.log("Logged out! Edit value is...");
       $rootScope.editButtons = false;
       $rootScope.signedIn = false;
+      
+      $rootScope.$emit('logout');
       $state.go($rootScope.from);
+      console.log($rootScope.editButtons);
     })
     .error(function(err){
       console.log("Error Logging out!");

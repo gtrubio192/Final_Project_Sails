@@ -3,6 +3,18 @@
 angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.services'])
 // provider is 3 types of services
 // can only use providers inside of .config
+  ////// Aarons ///////////////////////////////////////////
+.run(function($http, User) {
+	$http.get('/auth/user')
+	.success(function(user) {
+    console.log("running login check");
+		User.setLoggedInUser(user);
+	})
+	.error(function(err) {
+		console.log(err);
+	});
+})
+  ////// Aarons ///////////////////////////////////////////
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 	$stateProvider
     // chaining .state(name, { config object about this route });
