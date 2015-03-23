@@ -34,7 +34,7 @@ this["JST"]["assets/templates/dynamicDiv.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<!-- set move to true using ng-class once signed in successfully -->\n<div id=\'div1\' ng-hide="deleted" ng-style="position">\n  <div ng-show="editable">\n    <button class="btn pull-right hvr-grow hvr-glow" ng-click="edit()">\n        <i class="fa fa-pencil"></i>\n    </button>\n    <button class="btn pull-right hvr-grow hvr-glow" ng-click="deletePost()">\n        <i class="fa fa-times"></i>\n    </button>\n  </div>\n  <div>\n      <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n      </textarea>\n  </div>\n  <div ng-show="!textShow">\n<!--      <p>{{content}}</p>-->\n      <p ng-bind-html=\'content\'></p>\n\n  </div>\n  <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>\n';
+__p += '<!-- set move to true using ng-class once signed in successfully -->\n<div id=\'div1\' ng-hide="deleted">\n  <div ng-show="editable">\n    <button class="btn pull-right hvr-grow hvr-glow" ng-click="edit()">\n        <i class="fa fa-pencil"></i>\n    </button>\n    <button class="btn pull-right hvr-grow hvr-glow" ng-click="deletePost()">\n        <i class="fa fa-times"></i>\n    </button>\n  </div>\n  <div>\n      <textarea rows="4" cols="70" ng-show="textShow" type="text" ng-model="content">\n      </textarea>\n  </div>\n  <div ng-show="!textShow">\n<!--      <p>{{content}}</p>-->\n      <p ng-bind-html=\'content\'></p>\n\n  </div>\n  <button class="btn btn-default" ng-show="saveButton" ng-click="save()">Save</button>\n</div>\n';
 
 }
 return __p
@@ -54,7 +54,7 @@ this["JST"]["assets/templates/login.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<section id="login-container" ng-controller="LoginCtrl">\n\t<h2>Login</h2>\n\t<form ng-submit="login(htmlCredentials)" novalidate>\n\t\t<div id="login-form">\n\t\t\t<div class="form-group">\n\t\t\t\t<label>Email address</label>\n\t\t\t\t<input type="email" class="form-control" ng-model="htmlCredentials.identifier" placeholder="Enter email">\n\t\t\t\t<p class="error" ng-bind="error.identifier"></p>\n\t\t\t</div>\n\t\t\t<div class="form-group">\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input type="password" class="form-control" ng-model="htmlCredentials.password" placeholder="Password">\n\t\t\t\t<p class="error" ng-bind="error.password"></p>\n\t\t\t</div>\n\t\t\t<button type="submit" class="btn btn-default">Submit</button>\n\t\t</div>\n\t</form>\n</section>';
+__p += '<section id="login-container" ng-controller="LoginCtrl">\n\t<h2>Login</h2>\n\t<form ng-submit="login(htmlCredentials)" novalidate>\n\t\t<div id="login-form">\n\t\t\t<div class="form-group">\n\t\t\t\t<label>Email address</label>\n\t\t\t\t<input type="email" class="form-control" ng-model="htmlCredentials.identifier" placeholder="Enter email">\n\t\t\t\t<p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>\n\t\t\t</div>\n\t\t\t<div class="form-group">\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input type="password" class="form-control" ng-model="htmlCredentials.password" placeholder="Password">\n\t\t\t\t<p ng-show="loginError2" class="alert alert-danger" role="alert" ng-bind="passwordError"></p>\n\t\t\t</div>\n\t\t\t<button type="submit" class="btn btn-default">Submit</button>\n\t\t</div>\n\t</form>\n</section>';
 
 }
 return __p

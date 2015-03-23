@@ -49,7 +49,6 @@ angular.module('app.directives', [])
       position.top += 'px';
       position.left += 'px';
       
-      //use content.replace("\n", "<br>")
       $scope.content = $scope.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
       console.log("Replaced newlines: " + $scope.content);
 

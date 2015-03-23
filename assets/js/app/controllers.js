@@ -19,8 +19,6 @@ angular.module('app.controllers', [])
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
       $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
-      console.log("Content with <br>: " + i);
-      console.log($scope.sections[i].content);
     }
   });
   console.log($scope.caption);
@@ -37,8 +35,8 @@ angular.module('app.controllers', [])
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
       $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
-      console.log("Content with <br>: " + i);
-      console.log($scope.sections[i].content);
+//      console.log("Content with <br>: " + i);
+//      console.log($scope.sections[i].content);
     }
   });
 })
@@ -104,6 +102,8 @@ angular.module('app.controllers', [])
 	};
 
 	$scope.login = function(htmlCredentials) {
+    $scope.loginError1 = false;
+    $scope.loginError2 = false;
 		$scope.error = Validate.credentials(htmlCredentials);
 
 		if(!Validate.hasError($scope.error)) {
@@ -112,39 +112,55 @@ angular.module('app.controllers', [])
 				console.log('Success!');
 				console.log(res);
         
-				$state.go('home');
         $rootScope.editButtons1 = true;
         $rootScope.signedIn = true;
-        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
-            console.log("Moved from " + from + " to " + to);
-        });
-				if(res.success){
-//          $scope.editButtons = true;
-
-          
-//          $state.go($scope.previousState);
-
-//					$state.go('home');
-				} else {
-					$scope.error.generic = res.errors;
-				}
-				console.log($scope.error);
+        console.log("Logged in. Edit and signed in values are: ");
+        console.log($rootScope.editButtons1);
+        $state.go($rootScope.from);
 			})
 			.error(function(err){
 				console.log('error');
-				$scope.errorValidate = 'ERROR';
-				return $scope.errorValidate
+        console.log(err.summary);
+        if(err.status == '401'){
+          $scope.passwordError = err.summary;
+          $scope.loginError2 = true;
+        }
+        else if(err.status == '404'){
+          $scope.emailError = err.summary;
+          $scope.loginError1 = true;
+          console.log("Email wasnt good");
+        }
+//				$scope.errorValidate = 'ERROR';
+//				return $scope.errorValidate;
 			});
 		}
 	};
 })
 .controller('NavCtrl', function($scope, $http, $state, $rootScope) {
+  $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+      console.log("Moved from, to  ");
+      console.log(from);
+      console.log(to);
+      $rootScope.from = from;
+      $rootScope.to = to;
+  });
 	$scope.logout = function() {
-		$http.get('/logout');
-    $rootScope.editButtons = !$rootScope.editButtons;
-    $rootScope.signedIn = !$rootScope.signedIn;
+		$http.get('/logout')
+    .success(function(res){
+      console.log("Logged out!");
+      $rootScope.editButtons = false;
+      $rootScope.signedIn = false;
+      $state.go($rootScope.from);
+    })
+    .error(function(err){
+      console.log("Error Logging out!");
+      console.log(err);
+    });
+    
+//    $rootScope.editButtons = !$rootScope.editButtons;
+//    $rootScope.signedIn = !$rootScope.signedIn;
 
-		$state.go('home');
+//		$state.go('home');
 	};
 })
 .controller('RegisterCtrl', function($scope, $state, $http, Validate) {
