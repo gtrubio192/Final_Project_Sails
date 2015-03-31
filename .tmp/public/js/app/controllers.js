@@ -4,16 +4,15 @@ angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope,$rootScope, $http, $interval,$timeout, SectionService, $sce) {
   $( ".move" ).draggable();
   $( ".move" ).draggable( "disable" );
-  $('.carousel').carousel({
-    interval: 3000 //changes the speed
-  });
+//  $('.carousel').carousel({
+//    interval: 3000 //changes the speed
+//  });
   
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
   });
   
-  $scope.test = 'You\'re Home';
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
    // need to sort when a new line is added to textbox
@@ -41,8 +40,23 @@ angular.module('app.controllers', [])
     {
       $scope.sections[i].position = JSON.parse($scope.sections[i].position);
       $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
-//      console.log("Content with <br>: " + i);
-//      console.log($scope.sections[i].content);
+    }
+  });
+})
+.controller('About2Ctrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
+  $scope.test = 'About 2';
+  $rootScope.$on('logout', function(){
+      $scope.editButtons = $rootScope.editButtons;
+      console.log($scope.editButtons);
+  });
+  
+  $scope.formShow = false;
+  SectionService.load('about2').then(function(response){
+    $scope.sections = _.sortBy(response.data, 'id'); 
+    for(var i = 0; i < $scope.sections.length; i++)
+    {
+      $scope.sections[i].position = JSON.parse($scope.sections[i].position);
+      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
     }
   });
 })
@@ -67,15 +81,23 @@ angular.module('app.controllers', [])
 })
 .controller('PostCtrl', function($scope, $http, $state, SectionService){
   console.log("Post Control");
-  $scope.postContent = function(){
+  $scope.postContent = function(pagePosted){
     console.log("State ");
     console.log($state.current.name);
+    $scope.page = '';
     
+    if(pagePosted === undefined)
+    {
+      $scope.page = $state.current.name;
+    }
+    else{
+      $scope.page = pagePosted;
+    }
     $scope.textShow = false;
     $scope.saveButton = false;
     
     $http.post('/Box/',{
-      page: $state.current.name,
+      page: $scope.page,
       section: $scope.section,
       content: $scope.caption
     })
@@ -125,7 +147,9 @@ angular.module('app.controllers', [])
         $rootScope.signedIn = true;
         console.log("Logged in. Edit and signed in values are: ");
         console.log($rootScope.editButtons);
-        $state.go($rootScope.from);
+//        $state.go($rootScope.from);
+        $state.go('home');
+
 			})
 			.error(function(err){
 				console.log('error');

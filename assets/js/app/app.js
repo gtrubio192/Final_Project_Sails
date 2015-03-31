@@ -37,6 +37,11 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		templateUrl: "templates/about.html",
 		controller: "AboutCtrl"
 	})
+  .state('about2', {
+		url: "/about2",
+		templateUrl: "templates/about2.html",
+		controller: "About2Ctrl"
+	})
   .state('post', {
 		url: "/about",
 		templateUrl: "templates/about.html",

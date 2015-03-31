@@ -28,7 +28,8 @@ angular.module('app.directives', [])
       $scope.textShow = true;
       $scope.saveButton = true;
       console.log("Edit...");
-      
+//      $scope.content = $scope.content.replace('<br />', 'HEYOOOO');
+
 //      $( ".move" ).draggable({ stack: ".move" }); 
     };
     
