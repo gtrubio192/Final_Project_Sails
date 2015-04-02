@@ -58,3 +58,5 @@ Drop zone: Drag and drop images to upload with a preview http://www.dropzonejs.c
 Draggable and Resizable: jquery library that allows you to move elements around with your mouse http://jqueryui.com/draggable/ http://jqueryui.com/resizable/
 ORRRR
 DOPE! http://webix.com
+
+Mandrill Mail API Key: Required 

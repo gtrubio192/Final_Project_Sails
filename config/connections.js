@@ -80,7 +80,7 @@ module.exports.connections = {
     user: 'postgres',
     password: '',
     database: 'appdb'
-  }
+  },
 
 
   /***************************************************************************
@@ -88,5 +88,13 @@ module.exports.connections = {
   * More adapters: https://github.com/balderdashy/sails                      *
   *                                                                          *
   ***************************************************************************/
-
+//  mandrillapp: {
+//    adapter: 'sails-mandrill',
+//    apiKey: SHkKIO9WlKmaoPcArQjZyA , // the api key for your mandrill account 
+//    from: {
+//      name: 'ContactPage',
+//      email: 'gtrubio192@gmail.com'
+//    }
+//  }
+  
 };
