@@ -46,7 +46,6 @@ src="https://www.google.com/maps/embed/v1/place?q=13332%20Bee%20St%2C%20Dallas%2
 <!--  All fields required                  -->
               <form accept-charset="UTF-8" action="https://formkeep.com/f/72477ea92390" method="POST" novalidate>
                   <div class="row">
-<!--
                       <div class="form-group col-lg-4">
                           <label>Name</label>
                           <input ng-model="contact.name" name="name" type="text" class="form-control">
@@ -68,19 +67,20 @@ src="https://www.google.com/maps/embed/v1/place?q=13332%20Bee%20St%2C%20Dallas%2
                           <textarea ng-model="contact.message" name="message" class="form-control" rows="6"></textarea>
                           <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
                       </div>
-             Put in capcha id box               
+<!--             Put in capcha id box               -->
                       <div class="form-group col-lg-12">
                           <input type="hidden" name="save" value="contact">
                           <button class="btn btn-default">Capcha</button>
                       </div>
--->
 <!--       Add confirmation email on submit                     -->
+<!--
                       <input type="email" name="email" placeholder="Your Email">
                       <input type="text" name="name" placeholder="Your Name">
                       <input type="url" name="url" placeholder="Your Website">
+-->
                       <div class="form-group col-lg-12">
                         <input type="hidden" name="utf8" value="✓">
-                        <button type="submit">Submit</button>
+                        <button class="btn" type="submit">Submit</button>
                       </div>
                   </div>
               </form>

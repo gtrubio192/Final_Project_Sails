@@ -75,25 +75,29 @@ angular.module('app.directives', [])
     };
     
     $scope.deletePost = function(){
-      $scope.deleted = true;
-      console.log("Deleting...");
-      console.log($scope.id);
-      var query = {
-        id: $scope.id
-      };
+      $scope.confirmDelete = confirm("Are you sure you want to delete this item?");
       
-      console.log(query);
+      if($scope.confirmDelete){
+        $scope.deleted = true;
+        console.log("Deleting...");
+        console.log($scope.id);
+        var query = {
+          id: $scope.id
+        };
 
-      $http.delete("/Box/" + $scope.id)
-        .success(function(response) {
-          console.log("Delete success");
-          console.log(response);
-          $state.reload();
-  //        return response;
-        })
-        .error(function(err){
-            console.log(err);
-        });
+        console.log(query);
+
+        $http.delete("/Box/" + $scope.id)
+          .success(function(response) {
+            console.log("Delete success");
+            console.log(response);
+            $state.reload();
+    //        return response;
+          })
+          .error(function(err){
+              console.log(err);
+          });
+        }
     };
   }
   }
