@@ -131,22 +131,21 @@ angular.module('app.controllers', [])
     console.log("Contact form..." );
     console.log(contact);
 
-//    $("#returnmessage").empty(); // To empty previous error/success message.
     // Checking for blank fields.
-    if ($scope.contact.name == '' || $scope.contact.email == '' || $scope.contact.phone == '') {
-      alert("Please Fill Required Fields");
-    } 
-    else {
-      // Returns successful data submission message when the entered information is stored in database.
-      $.post("../assets/php/contactForm.php", contact)
-      .success(function(data) {
-//        $("#returnmessage").append(data); // Append returned message to message paragraph.
-        if (data == "Your Query has been received, We will contact you soon.") {
-//        $("#form")[0].reset(); // To reset form fields on success.
-          console.log("Contact success...");
-        }
-      });
-    }
+//    if ($scope.contact.name == '' || $scope.contact.email == '' || $scope.contact.phone == '') {
+//      alert("Please Fill Required Fields");
+//    } 
+//    else {
+//      // Returns successful data submission message when the entered information is stored in database.
+//      $.post("../assets/php/contactForm.php", contact)
+//      .success(function(data) {
+////        $("#returnmessage").append(data); // Append returned message to message paragraph.
+//        if (data == "Your Query has been received, We will contact you soon.") {
+////        $("#form")[0].reset(); // To reset form fields on success.
+//          console.log("Contact success...");
+//        }
+//      });
+//    }
   }
   
 })
