@@ -1,0 +1,126 @@
+
+<div class="container">
+  <div class="row">
+    <div class="box">
+      <div class="col-lg-12 text-center">
+        <div id="carousel-example-generic" class="carousel slide">
+  <!-- Indicators -->
+          <ol class="carousel-indicators hidden-xs">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+          </ol>
+
+        <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item">
+                <img class="img-responsive img-full" src="images/roof4.jpg" alt="">
+            </div>
+            <div class="item active">
+                <img class="img-responsive img-full" src="images/roof5.jpg" alt="" width="403px" height="843px">
+            </div>
+            <div class="item">
+                <img class="img-responsive img-full" src="images/roof6.jpg" alt="">
+            </div>
+            <div class="item">
+                <img class="img-responsive img-full" src="images/roof1.jpg" alt="">
+            </div>
+            <div class="item">
+                <img class="img-responsive img-full" src="images/roof2.jpg" alt="">
+            </div>
+            <div class="item">
+                <img class="img-responsive img-full" src="images/roof3.jpg" alt="">
+            </div>
+          </div>
+
+        <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="icon-prev"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="icon-next"></span>
+          </a>
+        </div>
+        <h2 class="brand-before">
+          <small>Welcome to</small>
+        </h2>
+        <h1 class="brand-name">Total Roofing</h1>
+        <hr class="tagline-divider">
+        <h2>
+          <small>
+            <strong>Your roofing solution since 1996</strong>
+          </small>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="box">
+        <div class="col-lg-12">
+          <hr>
+          <h2 class="intro-text text-center">Welcome to Total Residential Roofing.
+        <strong><br><br>We work hard for your business!</strong>
+          </h2>
+          <hr>
+    <!--                    <img class="img-responsive img-border img-left" src="http://www.totalroofingandreconstruction.com/images/slideshow2.gif" alt="">                    -->
+          <hr class="visible-xs">    
+<!--
+          <p>
+          The quality of our roofs are only matched by our excellent customer service & a knowledgeable, courteous staff. 
+            We have built a strong positive reputation by offering the best roofing products on the market, installed by 
+            excellent roofers which is all supported by superior customer service. We pride ourselves on exceeding the 
+            expectations of our customers. Our rates are some of the best on the market without having to sacrifice our 
+            quality & service. So give us a call or fill out a FREE ESTIMATE request today
+          </p>
+-->
+<!--
+          <p>At Total Residential Roofing, we service the Dallas, Fort Worth, Austin and surrounding areas. Our roofing repair company offers exceptional customer service, as well as trained technicians that are well educated on the installation process for all roofing types and roof systems, including those made from wood, metal or composition.</p>
+          <p>We service both residential and commercial roofing systems and handle re-roofing, new construction and repairs. Our Dallas roofing repair company professionally installs complete roof systems, as well as patio covers and durable metal roofs.</p>
+-->
+        </div>
+      </div>
+      <dynamic ng-repeat="section in sections"
+               content="section.content"  
+               page="'home'"
+               section="section"
+               id="section.id"
+               position="section.position"
+               editable="editButtons"
+               contenteditable="false"
+               class="move box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      </dynamic>
+    </div>
+  </div>
+<!-- /.container -->
+  <section ng-controller="PostCtrl" ng-show="signedIn"> 
+    <div>
+      <p ng-click="formShow = true" class="text-center">
+        <i class="fa fa-plus-square-o fa-4x"></i>      
+      </p>
+    </div>
+    <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+      <div>
+        <div>
+          <textarea rows="4" cols="100" ng-model="caption" type="text" placeholder="type here..." ></textarea>
+        </div>
+      </div>
+      <div>
+        <div class="text-right">
+          <button ng-click="postContent()" class="btn btn-success btn-lg">Post</button>
+          <button ng-click="formShow = false"id="button2id" name="button2id" class="btn btn-lg btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div> 
+  </section>
+
+<!-- Script to Activate the Carousel -->
+<!--
+  <script>
+    $('.carousel').carousel({
+    interval: 3000 //changes the speed
+    });
+  </script>-->
