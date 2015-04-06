@@ -52,6 +52,11 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		templateUrl: "templates/contact.html",
 		controller: "ContactCtrl"
 	})
+  .state('contactForm', {
+		url: "/contact#form",
+		templateUrl: "templates/contact.html",
+		controller: "ContactCtrl"
+	})
   .state('manufacturer', {
 		url: "/manufacturer",
 		templateUrl: "templates/manufacturer.html",

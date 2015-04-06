@@ -43,44 +43,41 @@ src="https://www.google.com/maps/embed/v1/place?q=13332%20Bee%20St%2C%20Dallas%2
               </h2>
               <hr>
               <p>We are here to help. Roof repairs can be overwhelming, put our expert staff to work for you. Fill out the form, please provide a phone number so we can reach out to you.</p>
-<!--  All fields required                  -->
-              <form accept-charset="UTF-8" action="https://formkeep.com/f/72477ea92390" method="POST" novalidate>
-                  <div class="row">
+              <p>Or feel free to write us a <strong>review!</strong></p>
+            <!--  All fields required                  -->
+<!--              <form accept-charset="UTF-8" action="https://formkeep.com/f/72477ea92390" method="POST">-->
+              <form accept-charset="UTF-8" ng-submit="contactInfo(contact)">
+
+                <div class="row">
                       <div class="form-group col-lg-4">
                           <label>Name</label>
-                          <input ng-model="contact.name" name="name" type="text" class="form-control">
-                          <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
+                          <input ng-model="contact.name" name="name" type="text" class="form-control" required>
                       </div>
                       <div class="form-group col-lg-4">
                           <label>Email Address</label>
-                          <input ng-model="contact.email" name="email" type="email" class="form-control">
-                          <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
+                          <input ng-model="contact.email" name="email" type="email" class="form-control" required>
                       </div>
                       <div class="form-group col-lg-4">
                           <label>Phone Number</label>
-                          <input ng-model="contact.phone" name="phone" type="tel" class="form-control">
-                          <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
+                          <input ng-model="contact.phone" name="phone" type="tel" class="form-control" required>
                       </div>
                       <div class="clearfix"></div>
                       <div class="form-group col-lg-12">
                           <label>Message</label>
-                          <textarea ng-model="contact.message" name="message" class="form-control" rows="6"></textarea>
-                          <p ng-show="loginError1" class="alert alert-danger" role="alert" ng-bind="emailError"></p>
+                          <textarea ng-model="contact.message" name="message" class="form-control" rows="6" required></textarea>
                       </div>
 <!--             Put in capcha id box               -->
+<!--
                       <div class="form-group col-lg-12">
                           <input type="hidden" name="save" value="contact">
                           <button class="btn btn-default">Capcha</button>
                       </div>
-<!--       Add confirmation email on submit                     -->
-<!--
-                      <input type="email" name="email" placeholder="Your Email">
-                      <input type="text" name="name" placeholder="Your Name">
-                      <input type="url" name="url" placeholder="Your Website">
 -->
                       <div class="form-group col-lg-12">
                         <input type="hidden" name="utf8" value="✓">
                         <button class="btn" type="submit">Submit</button>
+                        <p ng-show="contactSuccess" class="alert alert-success" role="alert">{{contactSuccess}}</p>
+
                       </div>
                   </div>
               </form>

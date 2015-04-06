@@ -118,7 +118,7 @@ angular.module('app.controllers', [])
 .controller("ManufacturerCtrl", function($scope, $sce){
   
 })
-.controller("ContactCtrl", function($scope, $sce, $http){
+.controller("ContactCtrl", function($state, $scope, $sce, $http){
   
   $scope.contact = {
     name: '',
@@ -130,22 +130,25 @@ angular.module('app.controllers', [])
   $scope.contactInfo = function(contact){
     console.log("Contact form..." );
     console.log(contact);
+    $scope.contactSuccess = '';
+    $scope.contactSuccessMessage = '';
 
     // Checking for blank fields.
-//    if ($scope.contact.name == '' || $scope.contact.email == '' || $scope.contact.phone == '') {
-//      alert("Please Fill Required Fields");
-//    } 
-//    else {
-//      // Returns successful data submission message when the entered information is stored in database.
-//      $.post("../assets/php/contactForm.php", contact)
-//      .success(function(data) {
-////        $("#returnmessage").append(data); // Append returned message to message paragraph.
-//        if (data == "Your Query has been received, We will contact you soon.") {
-////        $("#form")[0].reset(); // To reset form fields on success.
-//          console.log("Contact success...");
-//        }
-//      });
-//    }
+    if ($scope.contact.name == '' || $scope.contact.email == '' || $scope.contact.phone == '') {
+      alert("Please Fill Required Fields");
+    } 
+    else {
+      $scope.contactSuccess = "Thanks for reaching out " + $scope.contact.name + "!  We'll reach out to you soon.";
+
+      // Returns successful data submission message when the entered information is stored in database.
+      $.post("https://formkeep.com/f/f6ef46e658e0", contact)
+      .success(function(data) {
+        console.log(data);
+      })
+      .error(function(err){
+        console.log("contact error...");
+      });
+    }
   }
   
 })
