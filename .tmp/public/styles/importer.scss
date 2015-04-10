@@ -4,6 +4,9 @@
 .relativeParent{
   position: relative;
 }
+.plus{
+ padding-top: 5px; 
+}
 .edit{
   border: 2px solid gray;
   margin-top: 2em;
@@ -28,6 +31,11 @@ section{
 #review{
   position: absolute;
   right: 50px;
+  top: 25px;
+}
+#welcome{
+  position: absolute;
+  left: 50px;
   top: 25px;
 }
 .sister-company{

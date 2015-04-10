@@ -2,17 +2,23 @@
 
 angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope,$rootScope, $http, $interval,$timeout, SectionService, $sce) {
-  $( ".move" ).draggable();
-  $( ".move" ).draggable( "disable" );
-//  $('.carousel').carousel({
-//    interval: 3000 //changes the speed
-//  });
   
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
   });
   
+  
+//  $http.get('/auth/user')
+//    .success(function(data){
+//      console.log("User logged in!!!");
+//      $scope.editButtons = true;
+//      $rootScope.signedIn = true;
+//    })
+//    .error(function(err){
+//      console.log("Not logged in");
+//    });
+//  
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
    // need to sort when a new line is added to textbox
@@ -27,7 +33,6 @@ angular.module('app.controllers', [])
     
 })
 .controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
-  $scope.test = 'About';
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
@@ -44,7 +49,6 @@ angular.module('app.controllers', [])
   });
 })
 .controller('About2Ctrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
-  $scope.test = 'About 2';
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
@@ -152,7 +156,7 @@ angular.module('app.controllers', [])
   }
   
 })
-.controller('LoginCtrl', function($scope, $state, $http, Validate,$rootScope) {
+.controller('LoginCtrl', function($scope, $state, $http, Validate,$rootScope, User) {
 	$scope.error = {
 		identifier: '',
 		password: '',
@@ -172,9 +176,12 @@ angular.module('app.controllers', [])
 			$http.post('/auth/local', htmlCredentials)
 			.success(function(res) {
 				console.log('Login Success!');
-				console.log(res);
+				console.log(res.user.email);
+        $rootScope.user = res.user.email;
         
-        $rootScope.editButtons = true;
+        // Trying Aarons login
+        User.setLoggedInUser(res.user);
+
         $rootScope.signedIn = true;
         console.log("Logged in. Edit and signed in values are: ");
         console.log($rootScope.editButtons);
@@ -182,7 +189,7 @@ angular.module('app.controllers', [])
         $state.go('home');
 			})
 			.error(function(err){
-				console.log('error');
+				console.log('login error');
         console.log(err.summary);
         if(err.status == '401'){
           $scope.passwordError = err.summary;
@@ -275,8 +282,11 @@ angular.module('app.controllers', [])
 			.error(function(err){
 				console.log('error registerting');
 				console.log(err);
-        console.log(data);
-
+        if(err.status == '400'){
+          $scope.loginError1 = true;
+          $scope.regEmailError = err.summary;
+        }
+          
 				$scope.err = err;
 			});	
 		}

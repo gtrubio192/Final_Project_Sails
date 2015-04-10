@@ -1,5 +1,6 @@
 <body ng-app='app' class="blog-page">
   <div class="brand navbar navbar-default" id="top">
+    <h5 class="panel-title" ng-show="signedIn" id="welcome">Welcome, {{user}} </h5>
     <a href="#" ui-sref-active="active" ui-sref="contactForm">
         <button class="btn btn-success" id="review">Add Review!</button>
     </a>

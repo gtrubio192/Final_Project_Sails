@@ -18,10 +18,6 @@ angular.module('app.directives', [])
   },
 
   link: function($scope, $element, $attrs){
-//    $( ".move" ).draggable();
-//    $( ".move" ).draggable({ stack: ".move" }).sortable({
-//      revert: true
-//    });
 
     $scope.edit = function(){
       // show textarea, setting to true also hides div

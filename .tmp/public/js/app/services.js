@@ -32,10 +32,7 @@ angular.module('app.services', [])
       };
 
       console.log("Loading..." + page);
-
-//          $http.get('/Box/' + $scope.id, 
-//  THIS WORKS
-//      return $http.get("/Box/?sort=createdAt DESC")
+// Gathers content from CMS for a page, in ascending order
       return $http.get("/Box/?where=" + JSON.stringify(pageQuery)+"&?sort=id%20ASC")
       .success(function(response) {
         console.log("Load gets success");

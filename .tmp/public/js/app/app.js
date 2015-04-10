@@ -4,11 +4,14 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 // provider is 3 types of services
 // can only use providers inside of .config
   ////// Aarons ///////////////////////////////////////////
-.run(function($http, User) {
+.run(function($http, User, $rootScope) {
 	$http.get('/auth/user')
 	.success(function(user) {
     console.log("running login check");
 		User.setLoggedInUser(user);
+    $rootScope.signedIn = true;
+    $rootScope.user = user.email;
+
 	})
 	.error(function(err) {
 		console.log(err);
@@ -38,8 +41,8 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		controller: "AboutCtrl"
 	})
   .state('about2', {
-		url: "/about2",
-		templateUrl: "templates/about2.html",
+//		url: "/about2",
+//		templateUrl: "templates/about2.html",
 		controller: "About2Ctrl"
 	})
   .state('post', {
