@@ -86,6 +86,8 @@ angular.module('app.controllers', [])
 .controller('PostCtrl', function($scope, $http, $state, SectionService){
   console.log("Post Control");
   $scope.postContent = function(pagePosted){
+    console.log("PagePosted: ");
+    console.log(pagePosted);
     console.log("State ");
     console.log($state.current.name);
     $scope.page = '';
@@ -183,10 +185,8 @@ angular.module('app.controllers', [])
         User.setLoggedInUser(res.user);
 
         $rootScope.signedIn = true;
-        console.log("Logged in. Edit and signed in values are: ");
-        console.log($rootScope.editButtons);
 //        $state.go($rootScope.from);
-        $state.go('home');
+        $state.go('deltaDashboard');
 			})
 			.error(function(err){
 				console.log('login error');
@@ -224,13 +224,18 @@ angular.module('app.controllers', [])
 	$scope.logout = function() {
 		$http.get('/logout')
     .success(function(res){
-      console.log("Logged out! Edit value is...");
-      $rootScope.editButtons = false;
+      console.log("Logged out!...");
       $rootScope.signedIn = false;
       
       $rootScope.$emit('logout');
-      $state.go($rootScope.from);
-      console.log($rootScope.editButtons);
+      console.log($rootScope.from);
+      
+      if($rootScope.from === 'deltaDashboard'){
+        $state.go('deltaLogin');
+      }
+      else{
+        $state.go($rootScope.to);
+      }
     })
     .error(function(err){
       console.log("Error Logging out!");
@@ -291,4 +296,35 @@ angular.module('app.controllers', [])
 			});	
 		}
 	};
+})
+.controller("DeltaDashboardCtrl", function($scope, $sce){
+  
+})
+.controller("PackagePricingCtrl", function($scope, $state, $http, SectionService, $sce, $rootScope){
+  $rootScope.$on('logout', function(){
+      $scope.editButtons = $rootScope.editButtons;
+      console.log($scope.editButtons);
+  });
+  $scope.formShow = false;
+  // Load in different sections
+  SectionService.load('pricing1').then(function(response){
+    console.log("Pricing1:");
+    console.log(response);
+    $scope.sections1 = _.sortBy(response.data, 'id');
+    for(var i = 0; i < $scope.sections1.length; i++)
+    {
+      $scope.sections1[i].content = $sce.trustAsHtml($scope.sections1[i].content);
+    }
+  });
+  
+  SectionService.load('pricing2').then(function(response){
+    console.log("Pricing2:");
+    console.log(response);
+    $scope.sections2 = _.sortBy(response.data, 'id');
+    for(var i = 0; i < $scope.sections2.length; i++)
+    {
+      $scope.sections2[i].content = $sce.trustAsHtml($scope.sections2[i].content);
+    }
+  });
+  
 });

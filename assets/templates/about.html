@@ -1,125 +1,203 @@
-<div class="container">
+<section class="total-roofing">
+  <div class="container">
+    <div class="brand navbar navbar-default" id="top">
+        <a href="#" ui-sref-active="active" ui-sref="contactForm">
+            <button class="btn btn-success" id="review">Add Review!</button>
+        </a>
+        <img id="total-logo" class="img-responsive img-border img-center" width="50%"src="images/tr_logo_red.jpg" alt="">
+      </div>
 
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">About
-                        <strong>Total Roofing</strong>
-                    </h2>
-                    <hr>
-                </div>
-                <div class="col-lg-6 col-md-6 col-md-12">
-                    <img class="img-responsive img-border-left" src="http://stockfresh.com/files/d/diego_cervo/m/48/366980_stock-photo-construction-worker.jpg" alt="">
-<!--                    <img class="img-responsive" src="http://stockfresh.com/files/d/diego_cervo/m/48/366980_stock-photo-construction-worker.jpg" alt="">-->
+      <div class="address-bar">13332 Bee Street | Dallas, Texas | <a href="tel:+2143791950">214-379-1950</a></div>
 
-                </div>
-<!--                ADD CONTENT HERE -->
-                <div class="col-lg-6 col-md-6 col-sm-12" ng-controller="About2Ctrl">
-                      <dynamic ng-repeat="section in sections" 
-                         content="section.content"  
-                         page="'about2'"
-                         section="section"
-                         id="section.id"
-                         position="section.position"
-                         editable="signedIn"
-                         contenteditable="false"
-                         class="move col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      </dynamic>
-<!--                                    ADD CONTENT HERE -->
-                      <section ng-controller="PostCtrl" ng-show="signedIn"> 
-                        <div>
-                          <p ng-click="formShow = true" class="text-center">
-                            <button class="btn btn-success"><i class="plus fa fa-plus-square-o fa-4x"></i></button>    
-                          </p>
-                        </div>
-                        <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+      <!-- Navigation -->
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+            <a class="navbar-brand" href="#" ui-sref-active="active" ui-sref="home">Total Roofing</a>
+          </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#" ui-sref-active="active" ui-sref="home"><span>Home</span></a>
+              </li>
+              <li>
+                <a href="#" ui-sref-active="active" ui-sref="about"><span>About</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" ui-sref-active="active" ui-sref="blog"><span>Blog</span></a>
+              </li>
+              <li>
+                <a href="#" ui-sref-active="active" ui-sref="contact"><span>Contact</span></a>
+              </li>
+    <!--
+              <li>
+                <a href="#" ui-sref-active="active" ui-sref="manufacturer"><span>Manufacturers</span></a>
+              </li>
+    -->
+            </ul>
+          </div>
+      <!-- /.navbar-collapse -->
+        </div>
+      <!-- /.container -->
+      </nav>
+    <!--     Header      -->
+          <div class="row">
+              <div class="box">
+                  <div class="col-lg-12">
+                      <hr>
+                      <h2 class="intro-text text-center">About
+                          <strong>Total Roofing</strong>
+                      </h2>
+                      <hr>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-md-12">
+                      <img class="img-responsive img-border-left" src="http://stockfresh.com/files/d/diego_cervo/m/48/366980_stock-photo-construction-worker.jpg" alt="">
+  <!--                    <img class="img-responsive" src="http://stockfresh.com/files/d/diego_cervo/m/48/366980_stock-photo-construction-worker.jpg" alt="">-->
+
+                  </div>
+  <!--                ADD CONTENT HERE -->
+                  <div class="col-lg-6 col-md-6 col-sm-12" ng-controller="About2Ctrl">
+                        <dynamic ng-repeat="section in sections" 
+                           content="section.content"  
+                           page="'about2'"
+                           section="section"
+                           id="section.id"
+                           position="section.position"
+                           editable="signedIn"
+                           contenteditable="false"
+                           class="move col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        </dynamic>
+  <!--                                    ADD CONTENT HERE -->
+                        <section ng-controller="PostCtrl" ng-show="signedIn"> 
                           <div>
+                            <p ng-click="formShow = true" class="text-center">
+                              <button class="btn btn-success"><i class="plus fa fa-plus-square-o fa-4x"></i></button>    
+                            </p>
+                          </div>
+                          <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                             <div>
+                              <div>
 
-                              <textarea rows="4" cols="100" ng-model="caption" type="text" placeholder="type here..." ></textarea>
+                                <textarea rows="4" cols="100" ng-model="caption" type="text" placeholder="type here..." ></textarea>
+                              </div>
                             </div>
-                          </div>
-                          <div>
-                            <div class="text-right">
-                              <button ng-click="postContent('about2')" class="btn btn-success btn-lg">Post</button>
-                              <button ng-click="formShow = false"id="button2id" name="button2id" class="btn btn-lg btn-danger">Cancel</button>
+                            <div>
+                              <div class="text-right">
+                                <button ng-click="postContent('about2')" class="btn btn-success btn-lg">Post</button>
+                                <button ng-click="formShow = false"id="button2id" name="button2id" class="btn btn-lg btn-danger">Cancel</button>
+                              </div>
                             </div>
-                          </div>
-                        </div> 
-                      </section>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-           <dynamic ng-repeat="section in sections" 
-               content="section.content"  
-               page="'about'"
-               section="section"
-               id="section.id"
-               position="section.position"
-               editable="signedIn"
-               contenteditable="false"
-               class="move box col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            </dynamic>
-            <section ng-controller="PostCtrl" ng-show="signedIn"> 
-              <div>
-                <p ng-click="formShow = true" class="text-center">
-                  <button class="btn btn-success"><i class="plus fa fa-plus-square-o fa-4x"></i></button>    
-                </p>
+                          </div> 
+                        </section>
+                  </div>
+                  <div class="clearfix"></div>
               </div>
-              <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+             <dynamic ng-repeat="section in sections" 
+                 content="section.content"  
+                 page="'about'"
+                 section="section"
+                 id="section.id"
+                 position="section.position"
+                 editable="signedIn"
+                 contenteditable="false"
+                 class="move box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              </dynamic>
+              <section ng-controller="PostCtrl" ng-show="signedIn"> 
                 <div>
+                  <p ng-click="formShow = true" class="text-center">
+                    <button class="btn btn-success"><i class="plus fa fa-plus-square-o fa-4x"></i></button>    
+                  </p>
+                </div>
+                <div ng-show="formShow" class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                   <div>
+                    <div>
 
-                    <textarea rows="4" cols="100" ng-model="caption" type="text" placeholder="type here..." ></textarea>
+                      <textarea rows="4" cols="100" ng-model="caption" type="text" placeholder="type here..." ></textarea>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <div class="text-right">
-                    <button ng-click="postContent()" class="btn btn-success btn-lg">Post</button>
-                    <button ng-click="formShow = false"id="button2id" name="button2id" class="btn btn-lg btn-danger">Cancel</button>
+                  <div>
+                    <div class="text-right">
+                      <button ng-click="postContent()" class="btn btn-success btn-lg">Post</button>
+                      <button ng-click="formShow = false"id="button2id" name="button2id" class="btn btn-lg btn-danger">Cancel</button>
+                    </div>
                   </div>
-                </div>
-              </div> 
-            </section>
-        </div>
+                </div> 
+              </section>
+          </div>
 
+          <div class="row">
+              <div class="box">
+                  <div class="col-lg-12">
+                      <hr>
+                      <h2 class="intro-text text-center">Our
+                          <strong>Team</strong>
+                      </h2>
+                      <hr>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                      <img class="img-responsive" src="http://i.huffpost.com/gen/2681096/images/s-VINCE-VAUGHN-STOCK-PHOTO-large.jpg" alt="">
+                      <h3>Vince Vaughn
+                          <small>Lead Creative Consultant</small>
+                      </h3>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                      <img class="img-responsive" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/v/t1.0-9/1150979_10151770345647350_175518573_n.jpg?oh=d17da17bdf98d35dd9595b785a923d28&oe=55849223&__gda__=1437522254_9d93f4f2f864128fcc5b6fffbe1c4d1d" alt="">
+                      <h3>Gabe Rubio
+                          <small>Team Lead</small>
+                      </h3>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                      <img class="img-responsive" src="http://www.pleated-jeans.com/wp-content/uploads/2015/03/iStock-Unfinished-Business-10-1.jpg" alt="">
+                      <h3>Niel Sniggams
+                          <small>Lead Grumpy Janitor</small>
+                      </h3>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <div class="box">
+                  <div class="img-responsive img-border img-center">
+                      <img class="img-responsive" src="images/ScreenShot.png" alt="">
+  <!--                    <h2>(put in seperate box!) Put in Business associations and sister companies</h2>-->
+                  </div>
+              </div>
+          </div>
+  </div>
+  <!--Moving headers around-->
+    <footer>
+      <div class="container">
         <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Our
-                        <strong>Team</strong>
-                    </h2>
-                    <hr>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://i.huffpost.com/gen/2681096/images/s-VINCE-VAUGHN-STOCK-PHOTO-large.jpg" alt="">
-                    <h3>Vince Vaughn
-                        <small>Lead Creative Consultant</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/v/t1.0-9/1150979_10151770345647350_175518573_n.jpg?oh=d17da17bdf98d35dd9595b785a923d28&oe=55849223&__gda__=1437522254_9d93f4f2f864128fcc5b6fffbe1c4d1d" alt="">
-                    <h3>Gabe Rubio
-                        <small>Team Lead</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://www.pleated-jeans.com/wp-content/uploads/2015/03/iStock-Unfinished-Business-10-1.jpg" alt="">
-                    <h3>Niel Sniggams
-                        <small>Lead Grumpy Janitor</small>
-                    </h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="box">
-                <div class="img-responsive img-border img-center">
-                    <img class="img-responsive" src="images/ScreenShot.png" alt="">
-<!--                    <h2>(put in seperate box!) Put in Business associations and sister companies</h2>-->
-                </div>
-            </div>
+          <div class="col-lg-12 text-center">
+            <p>Copyright &copy; Total Roofing 2015</p>
+          </div>
         </div>
+      </div>
 
-    </div>
+      <section ng-hide="signedIn">
+        <a href="#" ui-sref-active="active" ui-sref="deltaLogin">
+            <button class="btn btn-xs" ng-click="signIn()">Sign In</button>
+        </a>
+  <!--
+        <a href="#" ui-sref-active="active" ui-sref="register">
+            <button class="btn btn-xs" ng-click="register()">Register</button>
+        </a>
+  -->
+      </section>
+      <section ng-controller="NavCtrl" ng-show="signedIn">
+        <button class="btn" ng-click="logout()">
+          Logout
+        </button>
+      </section>
+    </footer>
+</section>
+
     <!-- /.container -->

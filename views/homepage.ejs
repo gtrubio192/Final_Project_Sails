@@ -1,60 +1,25 @@
 <body ng-app='app' class="blog-page">
-  <div class="brand navbar navbar-default" id="top">
-    <h5 class="panel-title" ng-show="signedIn" id="welcome">Welcome, {{user}} </h5>
-    <a href="#" ui-sref-active="active" ui-sref="contactForm">
-        <button class="btn btn-success" id="review">Add Review!</button>
-    </a>
-    <img id="total-logo" class="img-responsive img-border img-center" width="50%"src="images/tr_logo_red.jpg" alt="">
-  </div>
-
-  <div class="address-bar">13332 Bee Street | Dallas, Texas | <a href="tel:+2143791950">214-379-1950</a></div>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-default" role="navigation">
+  
+  <nav ng-show="signedIn" class="brand navbar navbar-inverse">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-        <a class="navbar-brand" href="#" ui-sref-active="active" ui-sref="home">Total Roofing</a>
+      <a class="col-lg-6" href="#" ui-sref-active="active" ui-sref="deltaDashboard">
+        <span class="col-lg-6">
+          <span><img class="pull-left" width="15%" src="/images/Triangle_model_of_love.png">
+          <h5> Delta Dashboard</h5></span>
+        </span>
+      </a>
+      <div class="col-lg-6">
+        <h5 class="col-lg-6 col-lg-offset-6">Welcome, {{user}} </h5>
       </div>
-  <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="#" ui-sref-active="active" ui-sref="home"><span>Home</span></a>
-          </li>
-          <li>
-            <a href="#" ui-sref-active="active" ui-sref="about"><span>About</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" ui-sref-active="active" ui-sref="blog"><span>Blog</span></a>
-          </li>
-          <li>
-            <a href="#" ui-sref-active="active" ui-sref="contact"><span>Contact</span></a>
-          </li>
-<!--
-          <li>
-            <a href="#" ui-sref-active="active" ui-sref="manufacturer"><span>Manufacturers</span></a>
-          </li>
--->
-        </ul>
-      </div>
-  <!-- /.navbar-collapse -->
+      
     </div>
-  <!-- /.container -->
   </nav>
   
   <div ui-view>
     
   </div>
   
+<!--
   <footer>
     <div class="container">
       <div class="row">
@@ -68,11 +33,9 @@
       <a href="#" ui-sref-active="active" ui-sref="login">
           <button class="btn btn-xs" ng-click="signIn()">Sign In</button>
       </a>
-<!--
       <a href="#" ui-sref-active="active" ui-sref="register">
           <button class="btn btn-xs" ng-click="register()">Register</button>
       </a>
--->
     </section>
     <section ng-controller="NavCtrl" ng-show="signedIn">
       <button class="btn" ng-click="logout()">
@@ -80,5 +43,6 @@
       </button>
     </section>
   </footer>
+-->
 
 </body>
