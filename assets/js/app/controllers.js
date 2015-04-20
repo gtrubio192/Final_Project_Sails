@@ -118,7 +118,7 @@ angular.module('app.controllers', [])
 .controller("ManufacturerCtrl", function($scope, $sce){
   
 })
-.controller("ContactCtrl", function($state, $scope, $sce, $http){
+.controller("ContactCtrl", function($state,$rootScope, $scope, $sce, $http){
   $rootScope.header = true;
   $scope.contact = {
     name: '',
