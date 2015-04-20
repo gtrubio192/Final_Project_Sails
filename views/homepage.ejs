@@ -1,11 +1,11 @@
-<body ng-app='app' class="blog-page">
-  
+<body ng-app='app' class="total-roofing">
   <nav ng-show="signedIn" class="brand navbar navbar-inverse">
     <div class="container">
       <a class="col-lg-6" href="#" ui-sref-active="active" ui-sref="deltaDashboard">
         <span class="col-lg-6">
-          <span><img class="pull-left" width="15%" src="/images/Triangle_model_of_love.png">
-          <h5> Delta Dashboard</h5></span>
+          <span>
+            <h5 class="pull-left">Edit Mode</h5>
+          </span>
         </span>
       </a>
       <div class="col-lg-6">
@@ -14,6 +14,69 @@
       
     </div>
   </nav>
+  <!--  Header  -->
+  <div class="brand navbar navbar-default" id="top">
+    <a href="#" ui-sref-active="active" ui-sref="contactForm">
+        <button class="btn btn-success" id="review">Add Review!</button>
+    </a>
+    <img id="total-logo" class="img-responsive img-center" width="50%"src="images/tr_logo_red.jpg" alt="">
+  </div>
+
+  <div class="address-bar">13332 Bee Street | Dallas, Texas | <a href="tel:+2143791950">214-379-1950</a></div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+        <a class="navbar-brand" href="#" ui-sref-active="active" ui-sref="home">Total Roofing</a>
+      </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="hvr-shutter-out-vertical" 
+               href="#" ui-sref-active="active" ui-sref="home">
+              <span><strong>Home</strong></span>
+            </a>
+          </li>
+          <li>
+            <a class="hvr-shutter-out-vertical" 
+               href="#" ui-sref-active="active" ui-sref="about">
+              <span><strong>About</strong></span>
+            </a>
+          </li>
+          <li>
+            <a class="hvr-shutter-out-vertical" 
+               href="#" ui-sref-active="active" ui-sref="blog">
+              <span><strong>Blog</strong></span>
+            </a>
+          </li>
+          <li>
+            <a class="hvr-shutter-out-vertical" 
+               href="#" ui-sref-active="active" ui-sref="contact">
+              <span><strong>Contact</strong></span>
+            </a>
+          </li>
+<!--
+          <li>
+            <a href="#" ui-sref-active="active" ui-sref="manufacturer"><span>Manufacturers</span></a>
+          </li>
+-->
+        </ul>
+      </div>
+  <!-- /.navbar-collapse -->
+    </div>
+  <!-- /.container -->
+  </nav>
+<!--     Header      -->
   
   <div ui-view>
     

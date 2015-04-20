@@ -23,7 +23,7 @@
   background-color: white; }
 
 .blog-page {
-  background-color: lightgray; }
+  background-color: transparent; }
 
 .blog {
   border: 2px solid gray;
@@ -50,7 +50,7 @@ section {
   margin: 0 auto; }
 
 .total-roofing {
-  background: url("../images/roof8.jpg") no-repeat center center fixed;
+  background: url("../images/roof5.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -123,7 +123,7 @@ hr {
   border-color: #999999; }
 
 .box {
-  margin-bottom: 20px;
+  margin-top: 20px;
   padding: 30px 15px;
   background: #fff;
   background: rgba(255, 255, 255, 0.9); }
@@ -143,7 +143,11 @@ hr {
   float: none;
   margin: 0 auto 0; }
 
+.img-center {
+  margin: 0 auto 0; }
+
 footer {
+  margin-top: 20px;
   background: #fff;
   background: rgba(255, 255, 255, 0.9); }
 
@@ -153,27 +157,12 @@ footer p {
 
 .nav > li:hover,
 .nav > li:focus {
-  background-color: #eee; }
+  background-color: whitesmoke; }
 
 .navbar-default .navbar-nav > li:hover > a,
 .navbar-default .navbar-nav > li:focus > a {
-  color: white; }
+  color: whitesmoke; }
 
-/* custom */
-/*
-@link-hover-color: darken(white, 15%);
-
-// Usage
-li>a {
-  color: white;
-  text-decoration: none;
-
-  &:hover {
-    color: @link-hover-color;
-    text-decoration: underline;
-  }
-}
-*/
 @media screen and (max-width: 550px) {
   .forms {
     width: 85%;

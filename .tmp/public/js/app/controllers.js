@@ -2,6 +2,9 @@
 
 angular.module('app.controllers', [])
 .controller('HomeCtrl', function($scope,$rootScope, $http, $interval,$timeout, SectionService, $sce) {
+  $('.carousel').carousel({
+    interval: 3000 //changes the speed
+  });
   
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
@@ -186,7 +189,7 @@ angular.module('app.controllers', [])
 
         $rootScope.signedIn = true;
 //        $state.go($rootScope.from);
-        $state.go('deltaDashboard');
+        $state.go('home');
 			})
 			.error(function(err){
 				console.log('login error');
@@ -234,7 +237,7 @@ angular.module('app.controllers', [])
         $state.go('deltaLogin');
       }
       else{
-        $state.go($rootScope.to);
+        $state.go($rootScope.from);
       }
     })
     .error(function(err){
@@ -298,33 +301,5 @@ angular.module('app.controllers', [])
 	};
 })
 .controller("DeltaDashboardCtrl", function($scope, $sce){
-  
-})
-.controller("PackagePricingCtrl", function($scope, $state, $http, SectionService, $sce, $rootScope){
-  $rootScope.$on('logout', function(){
-      $scope.editButtons = $rootScope.editButtons;
-      console.log($scope.editButtons);
-  });
-  $scope.formShow = false;
-  // Load in different sections
-  SectionService.load('pricing1').then(function(response){
-    console.log("Pricing1:");
-    console.log(response);
-    $scope.sections1 = _.sortBy(response.data, 'id');
-    for(var i = 0; i < $scope.sections1.length; i++)
-    {
-      $scope.sections1[i].content = $sce.trustAsHtml($scope.sections1[i].content);
-    }
-  });
-  
-  SectionService.load('pricing2').then(function(response){
-    console.log("Pricing2:");
-    console.log(response);
-    $scope.sections2 = _.sortBy(response.data, 'id');
-    for(var i = 0; i < $scope.sections2.length; i++)
-    {
-      $scope.sections2[i].content = $sce.trustAsHtml($scope.sections2[i].content);
-    }
-  });
   
 });

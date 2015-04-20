@@ -86,23 +86,8 @@ angular.module('app', ['app.controllers', 'ui.router','app.directives', 'app.ser
 		templateUrl: "templates/deltaDashboard.html",
 		controller: "DeltaDashboardCtrl"
 	})
-  .state('deltaClient', {
-		url: "/deltaClient",
-		templateUrl: "templates/deltaClient.html",
-//		controller: "DeltaClientCtrl"
-	})
-  .state('deltaDesigner', {
-		url: "/deltaDesigner",
-		templateUrl: "templates/deltaDesigner.html",
-//		controller: "DeltaDesignerCtrl"
-	})
-  .state('packagePricing', {
-		url: "/packagePricing",
-		templateUrl: "templates/packagePricing.html",
-		controller: "PackagePricingCtrl"
-	});
 // ******** Take last 5 states out for Total Roofing ********
 
 // specifies what the defualt page is
-	$urlRouterProvider.otherwise("/deltaLogin");
+	$urlRouterProvider.otherwise("/home");
 });
