@@ -3,9 +3,12 @@
   top: -15px; }
 
 #login-container {
-  position: absolute;
+  position: relative;
   top: 10%;
   left: 67px; }
+
+.sign-panel {
+  margin-top: 5em !important; }
 
 .content {
   margin-top: 2em; }

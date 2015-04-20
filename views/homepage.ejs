@@ -8,13 +8,13 @@
           </span>
         </span>
       </a>
-      <div class="col-lg-6">
-        <h5 class="col-lg-6 col-lg-offset-6">Welcome, {{user}} </h5>
-      </div>
-      
+      <span class="col-lg-6">
+        <h5 class="pull-right">Welcome, {{user}} </h5>
+      </span>
     </div>
   </nav>
   <!--  Header  -->
+  <section ng-show="header">
   <div class="brand navbar navbar-default" id="top">
     <a href="#" ui-sref-active="active" ui-sref="contactForm">
         <button class="btn btn-success" id="review">Add Review!</button>
@@ -76,6 +76,7 @@
     </div>
   <!-- /.container -->
   </nav>
+  </section>
 <!--     Header      -->
   
   <div ui-view>

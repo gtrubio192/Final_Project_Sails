@@ -5,23 +5,12 @@ angular.module('app.controllers', [])
   $('.carousel').carousel({
     interval: 3000 //changes the speed
   });
-  
+  $rootScope.header = true;
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
   });
-  
-  
-//  $http.get('/auth/user')
-//    .success(function(data){
-//      console.log("User logged in!!!");
-//      $scope.editButtons = true;
-//      $rootScope.signedIn = true;
-//    })
-//    .error(function(err){
-//      console.log("Not logged in");
-//    });
-//  
+ 
   $scope.formShow = false;
   SectionService.load('home').then(function(response){
    // need to sort when a new line is added to textbox
@@ -36,6 +25,7 @@ angular.module('app.controllers', [])
     
 })
 .controller('AboutCtrl', function($scope, $state, $http, SectionService, $sce, $rootScope) {
+  $rootScope.header = true;
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
@@ -68,7 +58,8 @@ angular.module('app.controllers', [])
   });
 })
 .controller('BlogCtrl', function($scope, SectionService, $sce, $rootScope) {
-	$scope.test = 'Blogs';
+  $rootScope.header = true;
+  $scope.test = 'Blogs';
   $rootScope.$on('logout', function(){
       $scope.editButtons = $rootScope.editButtons;
       console.log($scope.editButtons);
@@ -128,7 +119,7 @@ angular.module('app.controllers', [])
   
 })
 .controller("ContactCtrl", function($state, $scope, $sce, $http){
-  
+  $rootScope.header = true;
   $scope.contact = {
     name: '',
     email: '',
@@ -162,7 +153,8 @@ angular.module('app.controllers', [])
   
 })
 .controller('LoginCtrl', function($scope, $state, $http, Validate,$rootScope, User) {
-	$scope.error = {
+	$rootScope.header = false;
+  $scope.error = {
 		identifier: '',
 		password: '',
 		generic: []
@@ -252,6 +244,7 @@ angular.module('app.controllers', [])
 	};
 })
 .controller('RegisterCtrl', function($scope, $state, $http, Validate) {
+  $rootScope.header = false;
 	$scope.error = {
 		identifier: '',
 		password: '',
