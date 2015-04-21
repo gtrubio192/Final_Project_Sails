@@ -229,7 +229,7 @@ angular.module('app.controllers', [])
         $state.go('deltaLogin');
       }
       else{
-        $state.go($rootScope.from);
+        $state.go('home');
       }
     })
     .error(function(err){
