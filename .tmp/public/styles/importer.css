@@ -129,7 +129,7 @@ hr {
   margin-top: 20px;
   padding: 30px 15px;
   background: #fff;
-  background: rgba(255, 255, 255, 0.9); }
+  background: white; }
 
 .intro-text {
   text-transform: uppercase;
@@ -151,8 +151,7 @@ hr {
 
 footer {
   margin-top: 20px;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.9); }
+  background: #fff; }
 
 footer p {
   margin: 0;
@@ -216,8 +215,7 @@ footer p {
 
   .navbar-default {
     border: none;
-    background: #fff;
-    background: rgba(255, 255, 255, 0.9); }
+    background: #fff; }
 
   .nav > li > a {
     padding: 35px; }
