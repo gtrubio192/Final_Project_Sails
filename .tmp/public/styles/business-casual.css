@@ -1,0 +1,30 @@
+ @media(min-width:320px) {
+   .carousel-size{
+    height: 10em ; 
+    overflow: hidden;
+   }
+ }
+ @media(min-width:375px) {
+   .carousel-size{
+    height: 12em ; 
+    overflow: hidden;
+   }
+ }
+ @media(min-width:500px) {
+   .carousel-size{
+    height: 20em ; 
+    overflow: hidden;
+   }
+}
+ @media(min-width:700px) {
+   .carousel-size{
+    height: 30em ; 
+    overflow: hidden;
+   }
+ }
+ @media(min-width:820px) {
+   .carousel-size{
+    height: 50em ; 
+    overflow: hidden;
+   }
+ }

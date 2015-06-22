@@ -1,0 +1,111 @@
+<section class="total-roofing">
+<div class="container">
+  <div class="row">
+      <div class="box">
+          <div class="col-lg-12">
+              <hr>
+              <h2 class="intro-text text-center">Contact
+                  <strong>Total Roofing</strong>
+              </h2>
+              <hr>
+          </div>
+          <div class="col-md-8">
+              <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
+              <iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=13332%20Bee%20St%2C%20Dallas%2C%20TX%2075234%2C%20United%20States&key=AIzaSyAOcQQ_GLh1RJtPxbKJFY4IdYOSprifbGg">
+              </iframe>
+
+          </div>
+          <div class="col-md-4">
+              <p>Phone:
+                  <a href="tel:2143791950"><strong>214-379-1950</strong></a>
+
+              </p>
+
+              <p>Address:
+                  <strong>13332 Bee St
+                      <br> Dallas, TX 75234</strong>
+              </p>
+          </div>
+          <div class="clearfix"></div>
+      </div>
+  </div>
+
+  <div class="row" id="form">
+      <div class="box">
+          <div class="col-lg-12">
+              <hr>
+              <h2 class="intro-text text-center">Contact
+                  <strong>form</strong>
+              </h2>
+              <hr>
+              <p>We are here to help. Roof repairs can be overwhelming, put our expert staff to work for you. Fill out the form, please provide a phone number so we can reach out to you.</p>
+              <p>Or feel free to write us a <strong>review!</strong></p>
+            <!--  All fields required                  -->
+<!--              <form accept-charset="UTF-8" action="https://formkeep.com/f/72477ea92390" method="POST">-->
+              <form accept-charset="UTF-8" ng-submit="contactInfo(contact)">
+
+                <div class="row">
+                      <div class="form-group col-lg-4">
+                          <label>Name</label>
+                          <input ng-model="contact.name" name="name" type="text" class="form-control" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label>Email Address</label>
+                          <input ng-model="contact.email" name="email" type="email" class="form-control" required>
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label>Phone Number</label>
+                          <input ng-model="contact.phone" name="phone" type="tel" class="form-control" required>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="form-group col-lg-12">
+                          <label>Message</label>
+                          <textarea ng-model="contact.message" name="message" class="form-control" rows="6" required></textarea>
+                      </div>
+<!--             Put in capcha id box               -->
+<!--
+                      <div class="form-group col-lg-12">
+                          <input type="hidden" name="save" value="contact">
+                          <button class="btn btn-default">Capcha</button>
+                      </div>
+-->
+                      <div class="form-group col-lg-12">
+                        <input type="hidden" name="utf8" value="✓">
+                        <button class="btn" type="submit">Submit</button>
+                        <p ng-show="contactSuccess" class="alert alert-success" role="alert">{{contactSuccess}}</p>
+
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+    <!--Moving headers around-->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>Copyright &copy; Total Roofing 2015</p>
+        </div>
+      </div>
+    </div>
+
+    <section ng-hide="signedIn">
+      <a href="#" ui-sref-active="active" ui-sref="deltaLogin">
+          <button class="btn btn-xs" ng-click="signIn()">Sign In</button>
+      </a>
+<!--
+      <a href="#" ui-sref-active="active" ui-sref="register">
+          <button class="btn btn-xs" ng-click="register()">Register</button>
+      </a>
+-->
+    </section>
+    <section ng-controller="NavCtrl" ng-show="signedIn">
+      <button class="btn" ng-click="logout()">
+        Logout
+      </button>
+    </section>
+  </footer>
+</section>
